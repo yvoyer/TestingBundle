@@ -1,0 +1,24 @@
+{
+    "name": "ka/testing-bundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Kevin Archer",
+            "email": "ka@kevinarcher.ca",
+            "homepage": "http://www.kevwebdev.com"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.4",
+        "symfony/framework-bundle": "2.4.*"
+    },
+
+    "autoload": {
+        "psr-0": { "Ka\\Bundle\\TestingBundle": "" }
+    },
+
+    "target-dir": "Ka/Bundle/TestingBundle"
+}
