@@ -6,4 +6,10 @@ php:
 before_script:
   - composer install
 
-script: phpunit -c phpunit-travis.xml --coverage-text
+script:
+  - mkdir -p build/logs
+  - phpunit -c phpunit.travis.xml
+
+after_script:
+  - php vendor/bin/coveralls
+
