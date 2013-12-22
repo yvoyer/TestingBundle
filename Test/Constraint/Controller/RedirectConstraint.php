@@ -57,7 +57,9 @@ class RedirectConstraint extends \PHPUnit_Framework_Constraint
      */
     protected function additionalFailureDescription($other)
     {
-        return (new CrawlerPrinter($this->client->getCrawler()))->html();
+        $printer = new CrawlerPrinter($this->client->getCrawler());
+
+        return $printer->html();
     }
 
     /**

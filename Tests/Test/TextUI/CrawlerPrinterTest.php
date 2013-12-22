@@ -21,10 +21,11 @@ class CrawlerPrinterTest extends WebTestCase
     public function testDisplayOfHtml($templateName)
     {
         $crawler = new Crawler();
+        $printer = new CrawlerPrinter($crawler);
 
         $crawler->addHtmlContent(file_get_contents(__DIR__.'/Fixtures/'.$templateName.'.html'));
 
-        $this->assertStringEqualsFile(__DIR__.'/Fixtures/'.$templateName.'.txt', (new CrawlerPrinter($crawler))->html());
+        $this->assertStringEqualsFile(__DIR__.'/Fixtures/'.$templateName.'.txt', $printer->html());
     }
 
     public function tagTemplateProvider()

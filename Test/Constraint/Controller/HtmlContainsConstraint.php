@@ -48,6 +48,8 @@ class HtmlContainsConstraint extends \PHPUnit_Framework_Constraint
      */
     protected function additionalFailureDescription($other)
     {
-        return (new CrawlerPrinter($this->crawler))->html();
+        $printer = new CrawlerPrinter($this->crawler);
+
+        return $printer->html();
     }
 }
