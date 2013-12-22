@@ -2,6 +2,7 @@
 
 namespace Ka\Bundle\TestingBundle\Test\Constraint;
 
+use Ka\Bundle\TestingBundle\Test\TextUI\CrawlerPrinter;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -39,54 +40,6 @@ class HtmlContainsConstraint extends \PHPUnit_Framework_Constraint
 
     protected function additionalFailureDescription($other)
     {
-        // TODO: move to a DomNodeList display class
-        // TODO: Display could be cleaner, initial implementation
-        $displayNodeList = function (\DOMNodeList $nodeList, \DOMElement $parent) use (&$displayNodeList)
-        {
-            $page = '';
-            /**
-             * @var \DomElement $element
-             */
-            foreach ($nodeList as $element) {
-                if ($element->hasChildNodes()) {
-                    $page .= $displayNodeList($element->childNodes, $element);
-                } else {
-                    switch ($element->nodeName) {
-                        case 'br':
-                            $page .= PHP_EOL;
-                            break;
-                        case '#text':
-                            if ('title' === $parent->nodeName) {
-                                $page .= $element->textContent.PHP_EOL;
-                                $page .= str_repeat('=', 69);
-                                break;
-                            }
-
-                            $page .= $element->textContent;
-                            break;
-                        case 'img':
-                            $page .= '['.$element->getAttribute('alt').']';
-                            break;
-                        case 'input':
-                            $page .= '['.$element->getAttribute('type').' input] ';
-                            break;
-                        case 'meta':
-                        case 'link':
-                            break;
-                        case 'div':
-                            break;
-                        default:
-                            $page .= $element->nodeName;
-                    }
-                }
-            }
-
-            return $page;
-        };
-
-        $line = str_repeat('=', 69).PHP_EOL;
-        $page = $line.$displayNodeList($this->crawler->getNode(0)->childNodes, $this->crawler->getNode(0)).PHP_EOL.$line;
-
-        return str_replace(array('  ', "\n\n\n"), array('', ''), $page);
+        return (new CrawlerPrinter($this->crawler))->html();
     }
 }
