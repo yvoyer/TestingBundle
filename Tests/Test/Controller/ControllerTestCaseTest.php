@@ -6,6 +6,8 @@ use Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
+ * TODO: Probably could simply these tests by using data providers by assertion type
+ *
  * @covers \Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
@@ -48,5 +50,79 @@ class ControllerTestCaseTest extends WebTestCase
     public function testAssertHtmlNotContainsWithNonMatch()
     {
         $this->testCase->assertHtmlNotContains('Index Content', '/fixture/index');
+    }
+
+    public function testAssertRedirectWithMatch()
+    {
+        $this->testCase->assertRedirect('/fixture/redirect');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/index' is a redirect.
+     */
+    public function testAssertRedirectWithNonMatch()
+    {
+        $this->testCase->assertRedirect('/fixture/index');
+    }
+
+    public function testAssertRedirectToWithMatch()
+    {
+        $this->testCase->assertRedirectTo('/fixture/redirect', '/fixture/index');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is redirecting to '/fixture/test'.
+     */
+    public function testAssertRedirectToWithNonMatch()
+    {
+        $this->testCase->assertRedirectTo('/fixture/redirect', '/fixture/test');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/index' is redirecting to '/fixture/index'.
+     */
+    public function testAssertRedirectToWithNonRedirectingMatch()
+    {
+        $this->testCase->assertRedirectTo('/fixture/index', '/fixture/index');
+    }
+
+    public function testAssertNotRedirectWithMatch()
+    {
+        $this->testCase->assertNotRedirect('/fixture/index');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is not a redirect.
+     */
+    public function testAssertNotRedirectWithNonMatch()
+    {
+        $this->testCase->assertNotRedirect('/fixture/redirect');
+    }
+
+    public function testAssertNotRedirectToWithMatch()
+    {
+        $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/test');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is not redirecting to '/fixture/index'.
+     */
+    public function testAssertNotRedirectToWithNonMatch()
+    {
+        $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/index');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is not redirecting to '/fixture/index'.
+     */
+    public function testAssertNotRedirectToWithRedirectingMatch()
+    {
+        $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/index');
     }
 }

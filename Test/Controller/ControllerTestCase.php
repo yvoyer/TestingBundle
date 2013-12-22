@@ -3,6 +3,8 @@
 namespace Ka\Bundle\TestingBundle\Test\Controller;
 
 use Ka\Bundle\TestingBundle\Test\Constraint\HtmlContainsConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\RedirectConstraint;
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -13,6 +15,11 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 class ControllerTestCase extends WebTestCase
 {
+    /**
+     * @var Client
+     */
+    private static $client;
+
     /**
      * Asserts that the HTML Response from a Url contains a given text
      *
@@ -48,6 +55,72 @@ class ControllerTestCase extends WebTestCase
     }
 
     /**
+     * Asserts that the Requested Url redirects
+     *
+     * @param string $url
+     * @param string $message
+     */
+    public static function assertRedirect($url, $message = '')
+    {
+        static::get($url);
+
+        self::assertThat(null, new RedirectConstraint(self::$client), $message);
+    }
+
+    /**
+     * Asserts that the Requested Url does not redirect
+     *
+     * @param string $url
+     * @param string $message
+     */
+    public static function assertNotRedirect($url, $message = '')
+    {
+        static::get($url);
+
+        self::assertThat(
+            null,
+            self::logicalNot(
+                new RedirectConstraint(self::$client)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Asserts that the Requested Url redirects to another Url
+     *
+     * @param string $url
+     * @param string $redirectUrl
+     * @param string $message
+     */
+    public static function assertRedirectTo($url, $redirectUrl, $message = '')
+    {
+        static::get($url);
+
+        self::assertThat($redirectUrl, new RedirectConstraint(self::$client), $message);
+    }
+
+    /**
+     * Asserts that the Requested Url does not redirect to another Url
+     *
+     * @param string $url
+     * @param string $redirectUrl
+     * @param string $message
+     */
+    public static function assertNotRedirectTo($url, $redirectUrl, $message = '')
+    {
+        static::get($url);
+
+        self::assertThat(
+            $redirectUrl,
+            self::logicalNot(
+                new RedirectConstraint(self::$client)
+            ),
+            $message
+        );
+    }
+
+    /**
      * Performs a GET request with the client
      *
      * @param string $url
@@ -56,8 +129,8 @@ class ControllerTestCase extends WebTestCase
      */
     public static function get($url)
     {
-        $client = static::createClient();
+        self::$client = static::createClient();
 
-        return $client->request('GET', $url);
+        return self::$client->request('GET', $url);
     }
 }
