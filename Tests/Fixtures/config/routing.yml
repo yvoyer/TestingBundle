@@ -4,3 +4,13 @@ fixture_index:
 fixture_redirect:
     path: /fixture/redirect
     defaults: { _controller: FixtureBundle:Fixture:redirect }
+fixture_login:
+    path: /fixture/login
+    defaults: { _controller: FixtureBundle:Fixture:login }
+fixture_login_check:
+    path: /fixture/login_check
+fixture_logout:
+    path: /fixture/logout
+fixture_secured:
+    path: /fixture/secured
+    defaults: { _controller: FixtureBundle:Fixture:secured }

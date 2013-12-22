@@ -10,8 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase
  *
- * @covers \Ka\Bundle\TestingBundle\Test\Constraint\HtmlContainsConstraint
- * @covers \Ka\Bundle\TestingBundle\Test\Constraint\RedirectConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Controller\HtmlContainsConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Controller\RedirectConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
@@ -127,5 +127,28 @@ class ControllerTestCaseTest extends WebTestCase
     public function testAssertNotRedirectToWithRedirectingMatch()
     {
         $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/index');
+    }
+
+    public function testAssertAuthenticationIsRequiredWithMatch()
+    {
+        $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/login');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/index' is redirecting to '/fixture/login'.
+     */
+    public function testAssertAuthenticationIsRequiredWithNonMatch()
+    {
+        $this->testCase->assertAuthenticationIsRequired('/fixture/index', '/fixture/login');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/secured' is redirecting to '/fixture/not-the-login'.
+     */
+    public function testAssertAuthenticationIsRequiredWithNonMatchLoginUrl()
+    {
+        $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/not-the-login');
     }
 }

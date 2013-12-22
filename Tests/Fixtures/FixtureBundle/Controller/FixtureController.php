@@ -19,4 +19,14 @@ class FixtureController
     {
         return new RedirectResponse('/fixture/index');
     }
+
+    public function loginAction()
+    {
+        return new Response('<html><body>Login</body></html>');
+    }
+
+    public function securedAction()
+    {
+        return new Response('<html><body>Logged in</body></html>');
+    }
 }

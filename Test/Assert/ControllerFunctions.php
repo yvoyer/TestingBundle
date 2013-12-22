@@ -92,3 +92,17 @@ function assertNotRedirectTo($url, $redirectUrl, $message = '')
     );
 }
 
+/**
+ * Assert that the Request Url redirects to a login page
+ *
+ * @param string $url
+ * @param string $loginUrl
+ * @param string $message
+ */
+function assertAuthenticationIsRequired($url, $redirectUrl, $message = '')
+{
+    return call_user_func_array(
+        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertAuthenticationIsRequired',
+        func_get_args()
+    );
+}

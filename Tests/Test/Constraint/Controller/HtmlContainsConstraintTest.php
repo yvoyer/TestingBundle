@@ -1,12 +1,12 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Test\Constraint;
+namespace Ka\Bundle\TestingBundle\Tests\Test\Constraint\Controller;
 
-use Ka\Bundle\TestingBundle\Test\Constraint\HtmlContainsConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Controller\HtmlContainsConstraint;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * @covers \Ka\Bundle\TestingBundle\Test\Constraint\HtmlContainsConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Controller\HtmlContainsConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */

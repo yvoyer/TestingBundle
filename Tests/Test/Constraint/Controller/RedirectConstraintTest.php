@@ -1,12 +1,12 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Test\Constraint;
+namespace Ka\Bundle\TestingBundle\Tests\Test\Constraint\Controller;
 
-use Ka\Bundle\TestingBundle\Test\Constraint\RedirectConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Controller\RedirectConstraint;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * @covers \Ka\Bundle\TestingBundle\Test\Constraint\RedirectConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Controller\RedirectConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */

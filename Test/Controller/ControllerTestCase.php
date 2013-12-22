@@ -2,8 +2,8 @@
 
 namespace Ka\Bundle\TestingBundle\Test\Controller;
 
-use Ka\Bundle\TestingBundle\Test\Constraint\HtmlContainsConstraint;
-use Ka\Bundle\TestingBundle\Test\Constraint\RedirectConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Controller\HtmlContainsConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Controller\RedirectConstraint;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -118,6 +118,24 @@ class ControllerTestCase extends WebTestCase
             ),
             $message
         );
+    }
+
+    /**
+     * Assert that the Request Url redirects to a login page
+     *
+     * Note: assertAuthenticationIsNotRequired was omitted because it would be a fragile test. It would still pass
+     * even if the page required authentication but was simply using a different login Url. Additionally asserting that
+     * the page is absolutely not a redirect would be to rigid.
+     *
+     * TODO: Support and test Http Basic authentication
+     *
+     * @param string $url
+     * @param string $loginUrl
+     * @param string $message
+     */
+    public static function assertAuthenticationIsRequired($url, $loginUrl, $message = '')
+    {
+        self::assertRedirectTo($url, $loginUrl, $message);
     }
 
     /**

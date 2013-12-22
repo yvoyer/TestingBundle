@@ -127,4 +127,18 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     {
         assertNotRedirectTo('/fixture/redirect', '/fixture/index');
     }
+
+    public function testAssertAuthenticationIsRequiredPasses()
+    {
+        assertAuthenticationIsRequired('/fixture/secured', '/fixture/login');
+    }
+
+    /**
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that '/fixture/index' is redirecting to '/fixture/login'.
+     */
+    public function testAssertAuthenticationIsRequiredFails()
+    {
+        assertAuthenticationIsRequired('/fixture/index', '/fixture/login');
+    }
 }

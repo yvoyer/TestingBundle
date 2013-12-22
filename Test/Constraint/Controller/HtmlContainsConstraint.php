@@ -1,6 +1,6 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Test\Constraint;
+namespace Ka\Bundle\TestingBundle\Test\Constraint\Controller;
 
 use Ka\Bundle\TestingBundle\Test\TextUI\CrawlerPrinter;
 use Symfony\Component\DomCrawler\Crawler;

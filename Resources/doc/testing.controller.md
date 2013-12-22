@@ -79,3 +79,13 @@ assertNotRedirectTo
       $this->assertNotRedirectTo('/path/to/page', '/not/redirect/to');
   }
   ```
+
+assertAuthenticationIsRequired
+-------------------
+
+  ```php
+  public function testAuthenticationIsRequired()
+  {
+      $this->assertAuthenticationIsRequired('/path/to/page', '/login');
+  }
+  ```
