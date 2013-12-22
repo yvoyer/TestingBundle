@@ -10,6 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase
  *
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\HtmlContainsConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\RedirectConstraint
+ *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
 class ControllerTestCaseTest extends WebTestCase
