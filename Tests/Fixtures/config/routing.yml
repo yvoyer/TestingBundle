@@ -1,3 +1,6 @@
 fixture_index:
     path: /fixture/index
     defaults: { _controller: FixtureBundle:Fixture:index }
+fixture_redirect:
+    path: /fixture/redirect
+    defaults: { _controller: FixtureBundle:Fixture:redirect }
