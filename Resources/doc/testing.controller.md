@@ -66,7 +66,7 @@ assertRedirectTo
   ```php
   public function testAssertRedirectTo()
   {
-      $this->assertNotRedirect('/path/to/page', '/redirecting/to');
+      $this->assertRedirectTo('/path/to/page', '/redirecting/to');
   }
   ```
 
@@ -74,8 +74,8 @@ assertNotRedirectTo
 -------------------
 
   ```php
-  public function testAssertRedirectTo()
+  public function testAssertNotRedirectTo()
   {
-      $this->assertNotRedirect('/path/to/page', '/not/redirect/to');
+      $this->assertNotRedirectTo('/path/to/page', '/not/redirect/to');
   }
   ```
