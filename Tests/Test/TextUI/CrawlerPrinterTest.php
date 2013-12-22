@@ -40,6 +40,7 @@ class CrawlerPrinterTest extends WebTestCase
             'link ignored' => array('link'),
             'head ignored' => array('head'),
             'empty div ignored' => array('div'),
+            'unknownTagsAreDisplayed' => array('unknown'),
         );
     }
 }
