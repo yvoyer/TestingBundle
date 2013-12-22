@@ -5,3 +5,8 @@ TestingBundle
 =============
 
 This bundle provides base test classes to simplify testing on Symfony applications.
+
+Documentation
+=============
+
+1. [Controller Testing](Resources/doc/testing.controller.md)
