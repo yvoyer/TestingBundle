@@ -5,7 +5,7 @@
         cacheTokens="true"
         colors="true"
         forceCoversAnnotation="true"
-        timeoutForSmallTests="3"
+        timeoutForSmallTests="5"
         timeoutForMediumTests="10"
         timeoutForLargeTests="60"
         strict="true">
