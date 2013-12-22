@@ -6,6 +6,8 @@ TestingBundle
 
 This bundle provides base test classes to simplify testing on Symfony applications.
 
+Note: The bundle is currently just beginning and not ready for any use.
+
 Documentation
 =============
 

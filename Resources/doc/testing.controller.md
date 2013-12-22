@@ -1,7 +1,7 @@
 Controller Testing
 ==================
 
-When testing Controllers you should extend from the base `ControllerTestCase`.
+When testing Controllers you should extend from `ControllerTestCase`.
 
   ```php
   namespace MyCompany\Bundle\FooBundle;
