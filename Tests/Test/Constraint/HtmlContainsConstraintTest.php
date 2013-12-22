@@ -31,14 +31,4 @@ class HtmlContainsConstraintTest extends WebTestCase
 
         $this->assertFalse($constraint->matches('Other Content'));
     }
-    
-    public function testToStringDescribeItself()
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/fixture/index');
-
-        $constraint = new HtmlContainsConstraint($crawler);
-
-        $this->assertEquals('is on the page', $constraint->toString());
-    }
 }
