@@ -5,9 +5,9 @@
         cacheTokens="true"
         colors="true"
         forceCoversAnnotation="true"
-        timeoutForSmallTests="5"
-        timeoutForMediumTests="10"
-        timeoutForLargeTests="60"
+        timeoutForSmallTests="10"
+        timeoutForMediumTests="30"
+        timeoutForLargeTests="90"
         strict="true">
     <php>
         <server name="KERNEL_DIR" value="./Tests/Fixtures" />
