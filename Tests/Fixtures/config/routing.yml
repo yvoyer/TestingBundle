@@ -1,0 +1,3 @@
+fixture_index:
+    path: /fixture/index
+    defaults: { _controller: FixtureBundle:Fixture:index }

@@ -5,8 +5,11 @@
         cacheTokens="true"
         colors="true"
         forceCoversAnnotation="true"
-        mapTestClassNameToCoveredClassName="true"
         strict="true">
+    <php>
+        <server name="KERNEL_DIR" value="./Tests/Fixtures" />
+    </php>
+
     <testsuites>
         <testsuite name="Ka TestingBundle Test Suite">
             <directory>./Tests</directory>
