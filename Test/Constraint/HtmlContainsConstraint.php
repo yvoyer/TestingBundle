@@ -33,11 +33,19 @@ class HtmlContainsConstraint extends \PHPUnit_Framework_Constraint
         return (bool) $this->crawler->filter('html:contains("'.$other.'")')->count();
     }
 
+    /**
+     * @return string
+     */
     public function toString()
     {
         return 'is on the page';
     }
 
+    /**
+     * @param mixed $other
+     *
+     * @return string
+     */
     protected function additionalFailureDescription($other)
     {
         return (new CrawlerPrinter($this->crawler))->html();
