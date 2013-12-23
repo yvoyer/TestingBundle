@@ -16,6 +16,8 @@ class CrawlerPrinterTest extends WebTestCase
     /**
      * @dataProvider tagTemplateProvider
      *
+     * TODO: these tests won't pass on windows because of line endings?
+     *
      * @param string $templateName
      */
     public function testDisplayOfHtml($templateName)

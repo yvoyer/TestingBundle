@@ -28,11 +28,6 @@ class ControllerTestCase extends WebTestCase
     /**
      * @var string
      */
-    public static $loginUrl;
-
-    /**
-     * @var string
-     */
     private static $lastAuthenticationHash;
 
     /**
@@ -205,36 +200,5 @@ class ControllerTestCase extends WebTestCase
         }
 
         self::$isolatedClient = false;
-    }
-
-    /**
-     * Login as a given user
-     *
-     * @param string $username
-     *
-     * @throws \Exception
-     */
-    public static function login($username)
-    {
-        if (null === self::$loginUrl) {
-            // TODO: replace with TestingBundle specific Exception
-            throw new \Exception('Please set the static loginUrl property');
-        }
-
-        switch ($username) {
-            case 'user':
-                $username = 'user';
-                $password = 'userpass';
-                break;
-            case 'admin':
-                $username = 'admin';
-                $password = 'adminpass';
-                break;
-            default:
-                throw new \Exception(sprintf('Unable to login with unknown username "%s"', $username));
-        }
-
-        // TODO: avoid using static $loginUrl
-        self::authenticate(static::$loginUrl, $username, $password);
     }
 }
