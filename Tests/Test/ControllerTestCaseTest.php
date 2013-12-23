@@ -1,21 +1,20 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Test\Controller;
+namespace Ka\Bundle\TestingBundle\Tests\Test;
 
-use Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Ka\Bundle\TestingBundle\Test\ControllerTestCase;
 
 /**
  * TODO: Probably could simply these tests by using data providers by assertion type
  *
- * @covers \Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase
+ * @covers \Ka\Bundle\TestingBundle\Test\ControllerTestCase
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Controller\HtmlContainsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Controller\RedirectConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
-class ControllerTestCaseTest extends WebTestCase
+class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ControllerTestCase

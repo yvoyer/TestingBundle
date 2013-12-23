@@ -14,7 +14,7 @@
 function assertHtmlContains($text, $url, $message = '')
 {
     return call_user_func_array(
-        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertHtmlContains',
+        'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertHtmlContains',
         func_get_args()
     );
 }
@@ -29,7 +29,7 @@ function assertHtmlContains($text, $url, $message = '')
 function assertHtmlNotContains($text, $url, $message = '')
 {
     return call_user_func_array(
-        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertHtmlNotContains',
+        'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertHtmlNotContains',
         func_get_args()
     );
 }
@@ -43,7 +43,7 @@ function assertHtmlNotContains($text, $url, $message = '')
 function assertRedirect($url, $message = '')
 {
     return call_user_func_array(
-        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertRedirect',
+        'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertRedirect',
         func_get_args()
     );
 }
@@ -57,7 +57,7 @@ function assertRedirect($url, $message = '')
 function assertNotRedirect($url, $message = '')
 {
     return call_user_func_array(
-        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertNotRedirect',
+        'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertNotRedirect',
         func_get_args()
     );
 }
@@ -72,7 +72,7 @@ function assertNotRedirect($url, $message = '')
 function assertRedirectTo($url, $redirectUrl, $message = '')
 {
     return call_user_func_array(
-        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertRedirectTo',
+        'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertRedirectTo',
         func_get_args()
     );
 }
@@ -87,7 +87,7 @@ function assertRedirectTo($url, $redirectUrl, $message = '')
 function assertNotRedirectTo($url, $redirectUrl, $message = '')
 {
     return call_user_func_array(
-        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertNotRedirectTo',
+        'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertNotRedirectTo',
         func_get_args()
     );
 }
@@ -102,7 +102,7 @@ function assertNotRedirectTo($url, $redirectUrl, $message = '')
 function assertAuthenticationIsRequired($url, $redirectUrl, $message = '')
 {
     return call_user_func_array(
-        'Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase::assertAuthenticationIsRequired',
+        'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertAuthenticationIsRequired',
         func_get_args()
     );
 }

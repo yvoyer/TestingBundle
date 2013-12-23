@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../../Test/Assert/ControllerFunctions.php';
  * TODO: There is a lot of overlap between these tests and the ControllerTestCase tests. See if there's a better way to
  * test the functions behave as expected.
  *
- * @covers \Ka\Bundle\TestingBundle\Test\Controller\ControllerTestCase
+ * @covers \Ka\Bundle\TestingBundle\Test\ControllerTestCase
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */

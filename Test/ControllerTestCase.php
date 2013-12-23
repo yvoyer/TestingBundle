@@ -1,6 +1,6 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Test\Controller;
+namespace Ka\Bundle\TestingBundle\Test;
 
 use Ka\Bundle\TestingBundle\Test\Constraint\Controller\HtmlContainsConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Controller\RedirectConstraint;
