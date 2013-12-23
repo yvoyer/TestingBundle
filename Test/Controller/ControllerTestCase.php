@@ -171,6 +171,7 @@ class ControllerTestCase extends WebTestCase
      * Authenticate the client
      *
      * TODO: form button should not be hard-coded
+     * TODO: support Http Basic authentication
      *
      * @param string $loginUrl
      * @param string|array $username|$values
