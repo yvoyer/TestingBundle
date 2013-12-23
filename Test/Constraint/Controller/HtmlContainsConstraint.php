@@ -6,6 +6,9 @@ use Ka\Bundle\TestingBundle\Test\TextUI\CrawlerPrinter;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
+ * TODO: This constraint can be too weak when Symfony is in debug mode and outputs the stack trace where the assertion
+ * was called and as a result always matches even when an unexpected exception was thrown (403 forbidden, etc.)
+ *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
 class HtmlContainsConstraint extends \PHPUnit_Framework_Constraint
