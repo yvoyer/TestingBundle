@@ -35,4 +35,5 @@ security:
             #    realm: "Secured Demo Area"
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/fixture/secured/adminonly, roles: ROLE_ADMIN }
+        - { path: ^/fixture/secured, roles: ROLE_USER }

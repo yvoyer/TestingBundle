@@ -151,4 +151,77 @@ class ControllerTestCaseTest extends WebTestCase
     {
         $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/not-the-login');
     }
+
+    public function testAuthenticateWithSuccessfulLogin()
+    {
+        $this->testCase->authenticate('/fixture/login', 'admin', 'adminpass');
+
+        $this->testCase->assertHtmlContains('Logged in', '/fixture/secured');
+    }
+
+    public function testAuthenticateWithSuccessfulLoginWithFormValues()
+    {
+        $this->testCase->authenticate('/fixture/login', array(
+            '_username' => 'admin',
+            '_password' => 'adminpass',
+        ));
+
+        $this->testCase->assertHtmlContains('Logged in', '/fixture/secured');
+    }
+
+    public function testAuthenticateWithUnsuccessfulLogin()
+    {
+        $this->testCase->authenticate('/fixture/login', 'admin', 'wrongpass');
+
+        $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/login');
+    }
+
+    public function testAuthenticateWithInsufficientPermsLogin()
+    {
+        $this->testCase->authenticate('/fixture/login', 'user', 'userpasss');
+
+        $this->testCase->assertAuthenticationIsRequired('/fixture/secured/adminonly', '/fixture/login');
+    }
+
+    public function testLoginWithAdminUser()
+    {
+        ControllerTestCase::$loginUrl = '/fixture/login';
+
+        $this->testCase->login('admin');
+
+        $this->testCase->assertHtmlContains('Admins only!', '/fixture/secured/adminonly');
+    }
+
+    public function testLoginWithUserUser()
+    {
+        ControllerTestCase::$loginUrl = '/fixture/login';
+
+        $this->testCase->login('user');
+
+        $this->testCase->assertHtmlContains('Logged in', '/fixture/secured');
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Please set the static loginUrl property
+     */
+    public function testLoginWithoutLoginUrlSetThrowsException()
+    {
+        ControllerTestCase::$loginUrl = null;
+
+        $this->testCase->login('user');
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Unable to login with unknown username "tester"
+     */
+    public function testLoginWithUnknownUserThrowsException()
+    {
+        ControllerTestCase::$loginUrl = '/fixture/login';
+
+        $this->testCase->login('tester');
+
+        $this->testCase->assertHtmlContains('Logged in', '/fixture/secured');
+    }
 }

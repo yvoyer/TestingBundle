@@ -18,7 +18,22 @@ class ControllerTestCase extends WebTestCase
     /**
      * @var Client
      */
-    private static $client;
+    public static $client;
+
+    /**
+     * @var bool
+     */
+    public static $isolatedClient = true;
+
+    /**
+     * @var string
+     */
+    public static $loginUrl;
+
+    /**
+     * @var string
+     */
+    private static $lastAuthenticationHash;
 
     /**
      * Asserts that the HTML Response from a Url contains a given text
@@ -127,7 +142,7 @@ class ControllerTestCase extends WebTestCase
      * even if the page required authentication but was simply using a different login Url. Additionally asserting that
      * the page is absolutely not a redirect would be to rigid.
      *
-     * TODO: Support and test Http Basic authentication
+     * TODO: Support Http Basic authentication
      *
      * @param string $url
      * @param string $loginUrl
@@ -147,8 +162,79 @@ class ControllerTestCase extends WebTestCase
      */
     public static function get($url)
     {
-        self::$client = static::createClient();
+        if (!self::$client || self::$isolatedClient) {
+            // TODO: will need to pass options and server parameters to the client
+            self::$client = static::createClient(array(
+                'debug' => true,
+            ));
+        }
 
         return self::$client->request('GET', $url);
+    }
+
+    /**
+     * Authenticate the client
+     *
+     * TODO: form button should not be hard-coded
+     *
+     * @param string $loginUrl
+     * @param string|array $username|$values
+     * @param string|null $password
+     */
+    public static function authenticate($loginUrl, $username, $password = null)
+    {
+        if (is_array($username)) {
+            $values = $username;
+        } else {
+            $values = array(
+                '_username' => $username,
+                '_password' => $password,
+            );
+        }
+
+        $currentAuthenticationHash = md5(serialize($values));
+
+        if ($currentAuthenticationHash !== self::$lastAuthenticationHash) {
+            self::$lastAuthenticationHash = $currentAuthenticationHash;
+            self::$isolatedClient = true;
+
+            $crawler = self::get($loginUrl);
+            $form = $crawler->selectButton('Login')->form($values);
+            self::$client->submit($form);
+
+        }
+
+        self::$isolatedClient = false;
+    }
+
+    /**
+     * Login as a given user
+     *
+     * @param string $username
+     *
+     * @throws \Exception
+     */
+    public static function login($username)
+    {
+        if (null === self::$loginUrl) {
+            // TODO: replace with TestingBundle specific Exception
+            throw new \Exception('Please set the static loginUrl property');
+        }
+
+        switch ($username) {
+            case 'user':
+                $username = 'user';
+                $password = 'userpass';
+                break;
+            case 'admin':
+                $username = 'admin';
+                $password = 'adminpass';
+                break;
+            default:
+                throw new \Exception(sprintf('Unable to login with unknown username "%s"', $username));
+        }
+
+        // TODO: avoid using static $loginUrl
+        self::authenticate(static::$loginUrl, $username, $password);
     }
 }

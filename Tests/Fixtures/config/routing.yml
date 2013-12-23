@@ -8,9 +8,12 @@ fixture_login:
     path: /fixture/login
     defaults: { _controller: FixtureBundle:Fixture:login }
 fixture_login_check:
-    path: /fixture/login_check
+    path: /fixture/secured/login_check
 fixture_logout:
     path: /fixture/logout
 fixture_secured:
     path: /fixture/secured
     defaults: { _controller: FixtureBundle:Fixture:secured }
+fixture_admin:
+    path: /fixture/secured/adminonly
+    defaults: { _controller: FixtureBundle:Fixture:admin }
