@@ -25,6 +25,8 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
      * Get a default config for the extension. This config will be used when none / null is passed as the config param
      * to the assertions.
      *
+     * TODO: Allow yml file or string to be provided as default config?
+     *
      * @return array
      */
     protected function getDefaultConfig()
