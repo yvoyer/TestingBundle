@@ -2,8 +2,8 @@
 
 namespace Ka\Bundle\TestingBundle\Tests\Test;
 
-use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\FixtureExtensionTestCase;
-use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\NoDefaultConfigurationExtensionTestCase;
+use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\FixtureExtensionTestCase;
+use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfigurationExtensionTestCase;
 
 /**
  * @covers \Ka\Bundle\TestingBundle\Test\ExtensionTestCase

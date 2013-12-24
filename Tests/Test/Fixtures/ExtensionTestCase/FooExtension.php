@@ -1,6 +1,6 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Test\Fixtures;
+namespace Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
