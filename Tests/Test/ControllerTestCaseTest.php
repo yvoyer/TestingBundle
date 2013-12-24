@@ -26,12 +26,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase = new ControllerTestCase();
     }
 
+    /**
+     * @group functional
+     */
     public function testAssertHtmlContainsWithMatch()
     {
         $this->testCase->assertHtmlContains('Index Content', '/fixture/index');
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that 'Other Content' is on the page.
      */
@@ -46,6 +51,8 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that 'Index Content' is not on the page.
      */
@@ -54,12 +61,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertHtmlNotContains('Index Content', '/fixture/index');
     }
 
+    /**
+     * @group functional
+     */
     public function testAssertRedirectWithMatch()
     {
         $this->testCase->assertRedirect('/fixture/redirect');
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/index' is a redirect.
      */
@@ -68,12 +80,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertRedirect('/fixture/index');
     }
 
+    /**
+     * @group functional
+     */
     public function testAssertRedirectToWithMatch()
     {
         $this->testCase->assertRedirectTo('/fixture/redirect', '/fixture/index');
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is redirecting to '/fixture/test'.
      */
@@ -83,6 +100,8 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/index' is redirecting to '/fixture/index'.
      */
@@ -91,12 +110,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertRedirectTo('/fixture/index', '/fixture/index');
     }
 
+    /**
+     * @group functional
+     */
     public function testAssertNotRedirectWithMatch()
     {
         $this->testCase->assertNotRedirect('/fixture/index');
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is not a redirect.
      */
@@ -105,12 +129,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertNotRedirect('/fixture/redirect');
     }
 
+    /**
+     * @group functional
+     */
     public function testAssertNotRedirectToWithMatch()
     {
         $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/test');
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is not redirecting to '/fixture/index'.
      */
@@ -120,6 +149,8 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/redirect' is not redirecting to '/fixture/index'.
      */
@@ -134,6 +165,8 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/index' is redirecting to '/fixture/login'.
      */
@@ -143,6 +176,8 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that '/fixture/secured' is redirecting to '/fixture/not-the-login'.
      */
@@ -151,6 +186,9 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/not-the-login');
     }
 
+    /**
+     * @group functional
+     */
     public function testAuthenticateWithSuccessfulLogin()
     {
         $this->testCase->authenticate('/fixture/login', 'admin', 'adminpass');
@@ -158,6 +196,9 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertHtmlContains('Logged in', '/fixture/secured');
     }
 
+    /**
+     * @group functional
+     */
     public function testAuthenticateWithSuccessfulLoginWithFormValues()
     {
         $this->testCase->authenticate('/fixture/login', array(
@@ -168,6 +209,9 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertHtmlContains('Logged in', '/fixture/secured');
     }
 
+    /**
+     * @group functional
+     */
     public function testAuthenticateWithUnsuccessfulLogin()
     {
         $this->testCase->authenticate('/fixture/login', 'admin', 'wrongpass');
@@ -175,6 +219,9 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/login');
     }
 
+    /**
+     * @group functional
+     */
     public function testAuthenticateWithInsufficientPermsLogin()
     {
         $this->testCase->authenticate('/fixture/login', 'user', 'userpasss');
