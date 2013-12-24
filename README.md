@@ -12,3 +12,4 @@ Documentation
 =============
 
 1. [Controller Testing](Resources/doc/testing.controller.md)
+2. [Dependency Injection Testing](Resources/doc/testing.dependency.injection.md)

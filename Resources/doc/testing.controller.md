@@ -4,7 +4,7 @@ Controller Testing
 When testing Controllers you should extend from `ControllerTestCase`.
 
   ```php
-  namespace MyCompany\Bundle\FooBundle;
+  namespace MyCompany\Bundle\FooBundle\Tests\Controller;
 
   use Ka\Bundle\TestingBundle\Test\ControllerTestCase;
 
