@@ -1,6 +1,6 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Test\Fixture;
+namespace Ka\Bundle\TestingBundle\Tests\Test\Fixtures;
 
 use Ka\Bundle\TestingBundle\Test\ExtensionTestCase;
 

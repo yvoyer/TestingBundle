@@ -2,7 +2,7 @@
 
 namespace Ka\Bundle\TestingBundle\Tests\Test;
 
-use Ka\Bundle\TestingBundle\Tests\Test\Fixture\FixtureExtensionTestCase;
+use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\FixtureExtensionTestCase;
 
 /**
  * @covers \Ka\Bundle\TestingBundle\Test\ExtensionTestCase

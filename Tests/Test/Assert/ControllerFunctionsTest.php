@@ -15,6 +15,8 @@ require_once __DIR__ . '/../../../Test/Assert/ControllerFunctions.php';
 class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @group functional
+     *
      * @covers ::assertHtmlContains
      */
     public function testAssertHtmlContainsPasses()
@@ -23,6 +25,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertHtmlContains
      *
      * @expectedException \PHPUnit_Framework_AssertionFailedError
@@ -34,6 +38,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertHtmlNotContains
      */
     public function testAssertHtmlNotContainsPasses()
@@ -42,6 +48,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertHtmlNotContains
      *
      * @expectedException \PHPUnit_Framework_AssertionFailedError
@@ -53,6 +61,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertRedirect
      */
     public function testAssertRedirectPasses()
@@ -61,6 +71,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertRedirect
      *
      * @expectedException \PHPUnit_Framework_AssertionFailedError
@@ -72,6 +84,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertNotRedirect
      */
     public function testAssertNotRedirectPasses()
@@ -80,6 +94,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertNotRedirect
      *
      * @expectedException \PHPUnit_Framework_AssertionFailedError
@@ -91,6 +107,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertRedirectTo
      */
     public function testAssertRedirectToPasses()
@@ -99,6 +117,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertRedirectTo
      *
      * @expectedException \PHPUnit_Framework_AssertionFailedError
@@ -110,6 +130,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertNotRedirectTo
      */
     public function testAssertNotRedirectToPasses()
@@ -118,6 +140,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertRedirectTo
      *
      * @expectedException \PHPUnit_Framework_AssertionFailedError
@@ -129,6 +153,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertAuthenticationIsRequired
      */
     public function testAssertAuthenticationIsRequiredPasses()
@@ -137,6 +163,8 @@ class ControllerFunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group functional
+     *
      * @covers ::assertAuthenticationIsRequired
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException

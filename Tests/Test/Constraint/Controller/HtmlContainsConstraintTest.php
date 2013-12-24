@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class HtmlContainsConstraintTest extends WebTestCase
 {
     /**
-     * @group integration
+     * @group functional
      */
     public function testWithMatchingNeedleShouldReturnTrue()
     {
@@ -26,7 +26,7 @@ class HtmlContainsConstraintTest extends WebTestCase
     }
 
     /**
-     * @group integration
+     * @group functional
      */
     public function testWithNonMatchShouldReturnFalse()
     {
