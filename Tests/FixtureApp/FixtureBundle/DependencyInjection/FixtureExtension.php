@@ -1,6 +1,6 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Fixtures\FixtureBundle\DependencyInjection;
+namespace Ka\Bundle\TestingBundle\Tests\FixtureApp\FixtureBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

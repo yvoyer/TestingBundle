@@ -1,6 +1,6 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Fixtures\FixtureBundle;
+namespace Ka\Bundle\TestingBundle\Tests\FixtureApp\FixtureBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

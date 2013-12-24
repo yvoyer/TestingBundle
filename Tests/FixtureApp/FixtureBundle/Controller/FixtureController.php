@@ -1,6 +1,6 @@
 <?php
 
-namespace Ka\Bundle\TestingBundle\Tests\Fixtures\FixtureBundle\Controller;
+namespace Ka\Bundle\TestingBundle\Tests\FixtureApp\FixtureBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
