@@ -47,7 +47,7 @@ This section lists the various assertion methods that are available.
 <!-- TODO: add index and permalinks -->
 
 assertServiceExists
-------------------
+-------------------
 
 `assertServiceExists(string $id[, array $config = null, string $message = ''])`
 
@@ -61,7 +61,7 @@ Reports an error identified by `$message` if `$id` service is not defined in the
   ```
 
 assertServiceNotExists
-------------------
+----------------------
 
 `assertServiceNotExists(string $id[, array $config = null, string $message = ''])`
 
@@ -75,7 +75,7 @@ Reports an error identified by `$message` if `$id` service is defined in the con
   ```
 
 assertServiceHasTag
-===================
+-------------------
 
 `assertServiceHasTag(string $id, string $tag[, array $config = null, string $message = ''])`
 
@@ -89,7 +89,7 @@ Reports an error identified by `$message` if `$id` service does not have `$tag` 
   ```
 
 assertServiceNotHasTag
-======================
+----------------------
 
 `assertServiceNotHasTag(string $id, string $tag[, array $config = null, string $message = ''])`
 
