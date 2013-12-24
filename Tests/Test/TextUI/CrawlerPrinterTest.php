@@ -14,6 +14,8 @@ use Symfony\Component\DomCrawler\Crawler;
 class CrawlerPrinterTest extends WebTestCase
 {
     /**
+     * @group integration
+     *
      * @dataProvider tagTemplateProvider
      *
      * TODO: these tests won't pass on windows because of line endings?

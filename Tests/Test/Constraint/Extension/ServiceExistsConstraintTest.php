@@ -12,6 +12,8 @@ use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint;
 class ServiceExistsConstraintTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @group unit
+     *
      * @dataProvider serviceMatchingProvider
      *
      * @param bool $expected
