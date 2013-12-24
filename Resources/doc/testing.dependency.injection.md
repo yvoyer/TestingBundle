@@ -23,12 +23,12 @@ When testing Extensions you should extend from `ExtensionTestCase`.
 
 You are required to implement the `getExtension` method which must return a new instance of the extension under test.
 
-Optionally you can also implement the `getDefaultConfig` method which will provide the default configuration parameters
-to be used when building the container. This method will be called when no config argument is provided to the assertions.
-This is useful for when you are using a custom Configuration class that requires certain parameters to be set.
+Optionally you can implement the `getDefaultConfig` method which will provide the default configuration parameters
+to be used when loading the extension. This method will be called when no config argument is provided to the assertions.
+This is useful when you are using a custom Configuration class that requires certain parameters to be always set.
 
   ```php
-  protected function getExtension()
+  protected function getDefaultConfig()
   {
       return array(
           'bar' => array(
