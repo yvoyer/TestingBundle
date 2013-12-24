@@ -3,6 +3,7 @@
 namespace Ka\Bundle\TestingBundle\Tests\Test;
 
 use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\FixtureExtensionTestCase;
+use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\NoDefaultConfigurationExtensionTestCase;
 
 /**
  * @covers \Ka\Bundle\TestingBundle\Test\ExtensionTestCase
@@ -60,5 +61,18 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceExistsWithNonMatch()
     {
         $this->testCase->assertServiceExists('fixture.baz');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expcetedExceptionMessage Failed asserting that 'fixture.default' service is defined.
+     */
+    public function testAssertServiceIsLoadedWithNoDefaultConfigDoesNotMatch()
+    {
+        $testcase = new NoDefaultConfigurationExtensionTestCase();
+
+        $testcase->assertServiceExists('fixture.default');
     }
 }
