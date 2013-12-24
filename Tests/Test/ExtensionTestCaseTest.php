@@ -75,4 +75,38 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
 
         $testcase->assertServiceExists('fixture.default');
     }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceNotExistsWithMatch()
+    {
+        $this->testCase->assertServiceNotExists('fixture.non.existing');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expcetedExceptionMessage Failed asserting that 'fixture.bar' service is not defined.
+     */
+    public function testAssertServiceNotExistsWithNonMatch()
+    {
+        $this->testCase->assertServiceNotExists('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expcetedExceptionMessage Failed asserting that 'fixture.custom' service is not defined.
+     */
+    public function testAssertServiceNotExistsWithCustomConfiguration()
+    {
+        $this->testCase->assertServiceNotExists('fixture.custom', array(
+            'bar' => array(
+                'custom' => true,
+            ),
+        ));
+    }
 }

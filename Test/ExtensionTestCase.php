@@ -33,7 +33,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that a service with the specified id exists in the container
+     * Assert that a service with the specified id exists
      *
      * @param string $id
      * @param array $config
@@ -44,6 +44,25 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
         $container = $this->getContainer($config);
 
         self::assertThat($id, new ServiceExistsConstraint($container), $message);
+    }
+
+    /**
+     * Assert that a service with the specified id does not exist
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceNotExists($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat($id,
+            self::logicalNot(
+                new ServiceExistsConstraint($container)
+            ),
+            $message
+        );
     }
 
     /**

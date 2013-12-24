@@ -58,3 +58,17 @@ Reports an error identified by `$message` if `$id` service is not defined in the
       $this->assertServiceExists('bar.service');
   }
   ```
+
+assertServiceNotExists
+------------------
+
+`assertServiceNotExists(string $id[, array $config = null, string $message = ''])`
+
+Reports an error identified by `$message` if `$id` service is defined in the container.
+
+  ```php
+  public function testServiceNotExists()
+  {
+      $this->assertServiceNotExists('bar.service');
+  }
+  ```
