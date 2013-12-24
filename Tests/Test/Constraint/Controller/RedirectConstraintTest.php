@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class RedirectConstraintTest extends WebTestCase
 {
     /**
+     * @group integration
+     *
      * @dataProvider urlProvider
      *
      * @param bool $expected

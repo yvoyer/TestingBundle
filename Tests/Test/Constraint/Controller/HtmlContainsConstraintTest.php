@@ -12,6 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class HtmlContainsConstraintTest extends WebTestCase
 {
+    /**
+     * @group integration
+     */
     public function testWithMatchingNeedleShouldReturnTrue()
     {
         $client = static::createClient();
@@ -22,6 +25,9 @@ class HtmlContainsConstraintTest extends WebTestCase
         $this->assertTrue($constraint->matches('Index Content'));
     }
 
+    /**
+     * @group integration
+     */
     public function testWithNonMatchShouldReturnFalse()
     {
         $client = static::createClient();
