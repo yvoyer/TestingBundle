@@ -14,13 +14,13 @@ class ServiceExistsConstraintTest extends \PHPUnit_Framework_TestCase
     /**
      * @group unit
      *
-     * @dataProvider serviceMatchingProvider
+     * @dataProvider serviceProvider
      *
      * @param bool $expected
      * @param string $id
      * @param bool $returnValue
      */
-    public function testServiceExistsMatching($expected, $id, $returnValue)
+    public function testServiceExists($expected, $id, $returnValue)
     {
         $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder');
 
@@ -36,7 +36,7 @@ class ServiceExistsConstraintTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $constraint->matches($id));
     }
 
-    public function serviceMatchingProvider()
+    public function serviceProvider()
     {
         return array(
             array(true, 'some.existing.service', true),
