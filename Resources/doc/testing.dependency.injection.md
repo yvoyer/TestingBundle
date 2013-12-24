@@ -44,6 +44,7 @@ Assertions
 This section lists the various assertion methods that are available.
 
 <!-- TODO: continue to expand the documentation and clarify anything ambiguous. -->
+<!-- TODO: add index and permalinks -->
 
 assertServiceExists
 ------------------
@@ -70,5 +71,33 @@ Reports an error identified by `$message` if `$id` service is defined in the con
   public function testServiceNotExists()
   {
       $this->assertServiceNotExists('bar.service');
+  }
+  ```
+
+assertServiceHasTag
+===================
+
+`assertServiceHasTag(string $id, string $tag[, array $config = null, string $message = ''])`
+
+Reports an error identified by `$message` if `$id` service does not have `$tag` tag.
+
+  ```php
+  public function testServiceHasTag()
+  {
+      $this->assertServiceHasTag('bar.service', 'bar.tag');
+  }
+  ```
+
+assertServiceNotHasTag
+======================
+
+`assertServiceNotHasTag(string $id, string $tag[, array $config = null, string $message = ''])`
+
+Reports an error identified by `$message` if `$id` service has `$tag` tag.
+
+  ```php
+  public function testServiceNotHasTag()
+  {
+      $this->assertServiceNotHasTag('bar.service', 'baz.tag');
   }
   ```

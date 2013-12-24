@@ -9,6 +9,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  * @covers \Ka\Bundle\TestingBundle\Test\ExtensionTestCase
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
@@ -56,7 +57,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @group integration
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expcetedExceptionMessage Failed asserting that 'fixture.baz' service is defined.
+     * @expectedExceptionMessage Failed asserting that 'fixture.baz' service is defined.
      */
     public function testAssertServiceExistsWithNonMatch()
     {
@@ -67,7 +68,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @group integration
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expcetedExceptionMessage Failed asserting that 'fixture.default' service is defined.
+     * @expectedExceptionMessage Failed asserting that 'fixture.default' service is defined.
      */
     public function testAssertServiceIsLoadedWithNoDefaultConfigDoesNotMatch()
     {
@@ -88,7 +89,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @group integration
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expcetedExceptionMessage Failed asserting that 'fixture.bar' service is not defined.
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service is not defined.
      */
     public function testAssertServiceNotExistsWithNonMatch()
     {
@@ -99,7 +100,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @group integration
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expcetedExceptionMessage Failed asserting that 'fixture.custom' service is not defined.
+     * @expectedExceptionMessage Failed asserting that 'fixture.custom' service is not defined.
      */
     public function testAssertServiceNotExistsWithCustomConfiguration()
     {
@@ -108,5 +109,65 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
                 'custom' => true,
             ),
         ));
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.not_defined' service is defined.
+     */
+    public function testAssertServiceHasTagWithNonExistingService()
+    {
+        $this->testCase->assertServiceHasTag('fixture.not_defined', 'fixture.tag');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceHasTagWithMatch()
+    {
+        $this->testCase->assertServiceHasTag('fixture.bar', 'bar.tag');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service has tag 'baz.tag'.
+     */
+    public function testAssertServiceHasTagWithNonMatch()
+    {
+        $this->testCase->assertServiceHasTag('fixture.bar', 'baz.tag');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.not_defined' service is defined.
+     */
+    public function testAssertServiceNotHasTagWithNonExistingService()
+    {
+        $this->testCase->assertServiceHasTag('fixture.not_defined', 'fixture.tag');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceNotHasTagWithMatch()
+    {
+       $this->testCase->assertServiceNotHasTag('fixture.bar', 'baz.tag');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service does not have tag 'bar.tag'.
+     */
+    public function testAssertServiceNotHasTagWithNonMatch()
+    {
+        $this->testCase->assertServiceNotHasTag('fixture.bar', 'bar.tag');
     }
 }

@@ -3,6 +3,7 @@
 namespace Ka\Bundle\TestingBundle\Test;
 
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
@@ -62,6 +63,46 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
         self::assertThat($id,
             self::logicalNot(
                 new ServiceExistsConstraint($container)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Assert that a service has a given tag
+     *
+     * TODO: to prevent building the container excessively and allow for multiple assertions, the assertions should
+     * accept a built container instead of a config
+     *
+     * @param string $id
+     * @param string $tag
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceHasTag($id, $tag, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertServiceExists($id, $config);
+        self::assertThat($tag, new ServiceHasTagConstraint($container, $id), $message);
+    }
+
+    /**
+     * Assert that a service does not have a given tag
+     *
+     * @param string $id
+     * @param string $tag
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceNotHasTag($id, $tag, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertServiceExists($id, $config);
+        self::assertThat($tag,
+            self::logicalNot(
+                new ServiceHasTagConstraint($container, $id)
             ),
             $message
         );

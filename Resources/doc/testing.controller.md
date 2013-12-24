@@ -19,6 +19,7 @@ Assertions
 This section lists the various assertion methods that are available.
 
 <!-- TODO: Add method signatures and short explanations -->
+<!-- TODO: add index and permalinks -->
 
 assertHtmlContains
 ------------------
