@@ -10,7 +10,7 @@
         timeoutForLargeTests="90"
         strict="true">
     <php>
-        <server name="KERNEL_DIR" value="./Tests/FixtureApp" />
+        <server name="KERNEL_DIR" value="./Tests/FixtureApp/app" />
     </php>
 
     <testsuites>
