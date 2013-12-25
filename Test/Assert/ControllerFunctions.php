@@ -66,10 +66,10 @@ function assertNotRedirect($url, $message = '')
  * Asserts that the Requested Url redirects to another Url
  *
  * @param string $url
- * @param string $redirectUrl
+ * @param string $destination
  * @param string $message
  */
-function assertRedirectTo($url, $redirectUrl, $message = '')
+function assertRedirectTo($url, $destination, $message = '')
 {
     return call_user_func_array(
         'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertRedirectTo',
@@ -81,10 +81,10 @@ function assertRedirectTo($url, $redirectUrl, $message = '')
  * Asserts that the Requested Url does not redirect to another Url
  *
  * @param string $url
- * @param string $redirectUrl
+ * @param string $destination
  * @param string $message
  */
-function assertNotRedirectTo($url, $redirectUrl, $message = '')
+function assertNotRedirectTo($url, $destination, $message = '')
 {
     return call_user_func_array(
         'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertNotRedirectTo',
@@ -99,7 +99,7 @@ function assertNotRedirectTo($url, $redirectUrl, $message = '')
  * @param string $loginUrl
  * @param string $message
  */
-function assertAuthenticationIsRequired($url, $redirectUrl, $message = '')
+function assertAuthenticationIsRequired($url, $loginUrl, $message = '')
 {
     return call_user_func_array(
         'Ka\Bundle\TestingBundle\Test\ControllerTestCase::assertAuthenticationIsRequired',

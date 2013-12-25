@@ -100,29 +100,29 @@ class ControllerTestCase extends WebTestCase
      * Asserts that the Requested Url redirects to another Url
      *
      * @param string $url
-     * @param string $redirectUrl
+     * @param string $destination
      * @param string $message
      */
-    public static function assertRedirectTo($url, $redirectUrl, $message = '')
+    public static function assertRedirectTo($url, $destination, $message = '')
     {
         static::get($url);
 
-        self::assertThat($redirectUrl, new RedirectConstraint(self::$client), $message);
+        self::assertThat($destination, new RedirectConstraint(self::$client), $message);
     }
 
     /**
      * Asserts that the Requested Url does not redirect to another Url
      *
      * @param string $url
-     * @param string $redirectUrl
+     * @param string $destination
      * @param string $message
      */
-    public static function assertNotRedirectTo($url, $redirectUrl, $message = '')
+    public static function assertNotRedirectTo($url, $destination, $message = '')
     {
         static::get($url);
 
         self::assertThat(
-            $redirectUrl,
+            $destination,
             self::logicalNot(
                 new RedirectConstraint(self::$client)
             ),
