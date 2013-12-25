@@ -105,7 +105,7 @@ Reports an error identified by `$message` if `$id` service has `$tag` tag.
 assertTagAttributeEquals
 ========================
 
-`assertTagAttributeEquals(string $id, string $tag, string $attribute, mixed $value[, $message = ''])`
+`assertTagAttributeEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
 
 Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is not equal to `$value`.
 
@@ -119,7 +119,7 @@ Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is
 assertTagAttributeNotEquals
 ===========================
 
-`assertTagAttributeNotEquals(string $id, string $tag, string $attribute, mixed $value[, $message = ''])`
+`assertTagAttributeNotEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
 
 Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is equal to `$value`.
 

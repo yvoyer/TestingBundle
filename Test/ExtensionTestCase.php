@@ -116,11 +116,12 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
      * @param string $tag
      * @param string $attribute
      * @param mixed $value
+     * @param array $config
      * @param string $message
      */
-    public function assertTagAttributeEquals($id, $tag, $attribute, $value, $message = '')
+    public function assertTagAttributeEquals($id, $tag, $attribute, $value, array $config = null, $message = '')
     {
-        $container = $this->getContainer();
+        $container = $this->getContainer($config);
         $attributes = $container->getDefinition($id)->getTag($tag);
 
         self::assertThat($value, new TagAttributeEqualsConstraint($attributes, $attribute), $message);
@@ -133,11 +134,12 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
      * @param string $tag
      * @param string $attribute
      * @param mixed $value
+     * @param array $config
      * @param string $message
      */
-    public function assertTagAttributeNotEquals($id, $tag, $attribute, $value, $message = '')
+    public function assertTagAttributeNotEquals($id, $tag, $attribute, $value, array $config = null, $message = '')
     {
-        $container = $this->getContainer();
+        $container = $this->getContainer($config);
         $attributes = $container->getDefinition($id)->getTag($tag);
 
         self::assertThat(
