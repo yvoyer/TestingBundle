@@ -39,11 +39,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertServiceExistsWithMatchAndCustomConfig()
     {
-        $this->testCase->assertServiceExists('fixture.custom', array(
-            'bar' => array(
-                'custom' => true,
-            ),
-        ));
+        $this->testCase->assertServiceExists('fixture.custom', $this->getCustomConfig());
     }
 
     /**
@@ -127,11 +123,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertServiceNotExistsWithCustomConfiguration()
     {
-        $this->testCase->assertServiceNotExists('fixture.custom', array(
-            'bar' => array(
-                'custom' => true,
-            ),
-        ));
+        $this->testCase->assertServiceNotExists('fixture.custom', $this->getCustomConfig());
     }
 
     /**
@@ -167,6 +159,14 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * @group integration
      */
+    public function testAssertServiceHasTagWithConfig()
+    {
+        $this->testCase->assertServiceHasTag('fixture.custom', 'custom.tag', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
     public function testAssertServiceNotHasTagWithMatch()
     {
        $this->testCase->assertServiceNotHasTag('fixture.bar', 'baz.tag');
@@ -192,6 +192,14 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceNotHasTagWithMessage()
     {
         $this->testCase->assertServiceNotHasTag('fixture.bar', 'bar.tag', null, 'Service should not have bar.tag');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceNotHasTagWithConfig()
+    {
+        $this->testCase->assertServiceNotHasTag('fixture.custom', 'foo.tag', $this->getCustomConfig());
     }
 
     /**
@@ -227,6 +235,14 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * @group integration
      */
+    public function testAssertTagAttributeEqualsWithConfig()
+    {
+        $this->testCase->assertTagAttributeEquals('fixture.custom', 'custom.tag', 'custom', true, $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
     public function testAssertTagAttributeNotEqualsWithMatch()
     {
         $this->testCase->assertTagAttributeNotEquals('fixture.bar', 'bar.tag', 'test', 'abc');
@@ -253,4 +269,25 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     {
         $this->testCase->assertTagAttributeNotEquals('fixture.bar', 'bar.tag', 'test', 'check', null, 'Attribute should not equal x');
     }
+
+    /**
+     * @group integration
+     */
+    public function testAssertTagAttributeNotEqualsWithConfig()
+    {
+        $this->testCase->assertTagAttributeNotEquals('fixture.custom', 'custom.tag', 'custom', false, $this->getCustomConfig());
+    }
+
+    /**
+     * @return array
+     */
+    private function getCustomConfig()
+    {
+        return array(
+            'bar' => array(
+                'custom' => true,
+            ),
+        );
+    }
+
 }

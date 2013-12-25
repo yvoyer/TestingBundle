@@ -151,6 +151,8 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
         );
     }
 
+    // TODO: support many other assertions based on a service Definition class.
+
     /**
      * @param array $config
      *

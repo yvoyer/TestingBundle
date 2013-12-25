@@ -23,7 +23,10 @@ class FooExtension implements ExtensionInterface
         $loader->load('services.xml');
 
         if (isset($config['bar']['custom'])) {
-            $container->setDefinition('fixture.custom', new Definition());
+            $definition = new Definition();
+            $definition->addTag('custom.tag', array('custom' => true));
+
+            $container->setDefinition('fixture.custom', $definition);
         }
 
         if (isset($config['bar']['default'])) {
