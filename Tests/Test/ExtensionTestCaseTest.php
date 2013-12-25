@@ -205,7 +205,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * @group integration
      */
-    public function testassertServiceTagAttributeEqualsWithMatch()
+    public function testAssertServiceTagAttributeEqualsWithMatch()
     {
         $this->testCase->assertServiceTagAttributeEquals('fixture.bar', 'bar.tag', 'flag', true);
     }
@@ -216,7 +216,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that test attribute is equal to 'abc'.
      */
-    public function testassertServiceTagAttributeEqualsWithNonMatch()
+    public function testAssertServiceTagAttributeEqualsWithNonMatch()
     {
         $this->testCase->assertServiceTagAttributeEquals('fixture.bar', 'bar.tag', 'test', 'abc');
     }
@@ -227,7 +227,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Custom message
      */
-    public function testassertServiceTagAttributeEqualsWithMessage()
+    public function testAssertServiceTagAttributeEqualsWithMessage()
     {
         $this->testCase->assertServiceTagAttributeEquals('fixture.bar', 'bar.tag', 'test', 'abc', null, 'Custom message');
     }
@@ -235,7 +235,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * @group integration
      */
-    public function testassertServiceTagAttributeEqualsWithConfig()
+    public function testAssertServiceTagAttributeEqualsWithConfig()
     {
         $this->testCase->assertServiceTagAttributeEquals('fixture.custom', 'custom.tag', 'custom', true, $this->getCustomConfig());
     }
@@ -243,7 +243,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * @group integration
      */
-    public function testassertServiceTagAttributeNotEqualsWithMatch()
+    public function testAssertServiceTagAttributeNotEqualsWithMatch()
     {
         $this->testCase->assertServiceTagAttributeNotEquals('fixture.bar', 'bar.tag', 'test', 'abc');
     }
@@ -254,7 +254,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Failed asserting that test attribute is not equal to 'check'.
      */
-    public function testassertServiceTagAttributeNotEqualsWithNonMatch()
+    public function testAssertServiceTagAttributeNotEqualsWithNonMatch()
     {
         $this->testCase->assertServiceTagAttributeNotEquals('fixture.bar', 'bar.tag', 'test', 'check');
     }
@@ -265,7 +265,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
      * @expectedExceptionMessage Attribute should not equal x
      */
-    public function testassertServiceTagAttributeNotEqualsWithMessage()
+    public function testAssertServiceTagAttributeNotEqualsWithMessage()
     {
         $this->testCase->assertServiceTagAttributeNotEquals('fixture.bar', 'bar.tag', 'test', 'check', null, 'Attribute should not equal x');
     }
@@ -273,7 +273,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * @group integration
      */
-    public function testassertServiceTagAttributeNotEqualsWithConfig()
+    public function testAssertServiceTagAttributeNotEqualsWithConfig()
     {
         $this->testCase->assertServiceTagAttributeNotEquals('fixture.custom', 'custom.tag', 'custom', false, $this->getCustomConfig());
     }
