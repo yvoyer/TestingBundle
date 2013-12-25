@@ -45,6 +45,20 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertHtmlContains('Other Content', '/fixture/index');
     }
 
+    /**
+     * @group functional
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Custom error message
+     */
+    public function testAssertHtmlContainsWithMessage()
+    {
+        $this->testCase->assertHtmlContains('Other Content', '/fixture/index', 'Custom error message');
+    }
+
+    /**
+     * @group functional
+     */
     public function testAssertHtmlNotContainsWithMatch()
     {
         $this->testCase->assertHtmlNotContains('Other Content', '/fixture/index');
@@ -59,6 +73,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertHtmlNotContainsWithNonMatch()
     {
         $this->testCase->assertHtmlNotContains('Index Content', '/fixture/index');
+    }
+
+    /**
+     * @group functional
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Custom error message
+     */
+    public function testAssertHtmlNotContainsWithMessage()
+    {
+        $this->testCase->assertHtmlNotContains('Index Content', '/fixture/index', 'Custom error message');
     }
 
     /**
@@ -78,6 +103,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertRedirectWithNonMatch()
     {
         $this->testCase->assertRedirect('/fixture/index');
+    }
+
+    /**
+     * @group functional
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should be a redirect
+     */
+    public function testAssertRedirectWithMessage()
+    {
+        $this->testCase->assertRedirect('/fixture/index', 'Should be a redirect');
     }
 
     /**
@@ -112,6 +148,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @group functional
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should redirect to /fixture/index
+     */
+    public function testAssertRedirectToWithMessage()
+    {
+        $this->testCase->assertRedirectTo('/fixture/index', '/fixture/index', 'Should redirect to /fixture/index');
+    }
+
+    /**
+     * @group functional
      */
     public function testAssertNotRedirectWithMatch()
     {
@@ -127,6 +174,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertNotRedirectWithNonMatch()
     {
         $this->testCase->assertNotRedirect('/fixture/redirect');
+    }
+
+    /**
+     * @group functional
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should not redirect
+     */
+    public function testAssertNotRedirectWithMessage()
+    {
+        $this->testCase->assertNotRedirect('/fixture/redirect', 'Should not redirect');
     }
 
     /**
@@ -159,6 +217,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/index');
     }
 
+    /**
+     * @group functional
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should not redirect to /fixture/index
+     */
+    public function testAssertNotRedirectToWithMessage()
+    {
+        $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/index', 'Should not redirect to /fixture/index');
+    }
+
     public function testAssertAuthenticationIsRequiredWithMatch()
     {
         $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/login');
@@ -184,6 +253,17 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertAuthenticationIsRequiredWithNonMatchLoginUrl()
     {
         $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/not-the-login');
+    }
+
+    /**
+     * @group functional
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should redirect to login page
+     */
+    public function testAssertAuthenticationIsRequiredWithMessage()
+    {
+        $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/not-the-login', 'Should redirect to login page');
     }
 
     /**
