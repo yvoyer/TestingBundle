@@ -158,7 +158,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
      *
      * @return ContainerBuilder
      */
-    private function getContainer(array $config = null)
+    protected function getContainer(array $config = null)
     {
         $config = $config ?: $this->getDefaultConfig();
 

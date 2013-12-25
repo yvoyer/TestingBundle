@@ -129,3 +129,27 @@ Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is
       $this->assertTagAttributeNotEquals('bar.service', 'baz.tag', 'zen', 'othervalue');
   }
   ```
+
+Helper Methods
+==============
+
+getContainer
+------------
+
+`ContainerBuilder getContainer([array $config = null])`
+
+Returns that container after loading the extension using `$config` or `getDefaultConfig` if omitted.
+
+  ```php
+  public function testContainer()
+  {
+      $container = $this->getContainer();
+
+      $definition = $container->getDefinition('service.id');
+
+      // ... perform assertions directly on the service definition
+  }
+  ```
+
+**Caution**: Currently the container will only be loaded once per config so modifying the `$container` may cause unwanted
+behaviour.
