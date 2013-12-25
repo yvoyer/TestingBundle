@@ -10,6 +10,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\TagAttributeEqualsConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
@@ -147,5 +148,43 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceNotHasTagWithNonMatch()
     {
         $this->testCase->assertServiceNotHasTag('fixture.bar', 'bar.tag');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceTagAttributeEqualsWithMatch()
+    {
+        $this->testCase->assertTagAttributeEquals('fixture.bar', 'bar.tag', 'flag', true);
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that test attribute is equal to 'abc'.
+     */
+    public function testAssertServiceTagAttributeEqualsWithNonMatch()
+    {
+        $this->testCase->assertTagAttributeEquals('fixture.bar', 'bar.tag', 'test', 'abc');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceTagAttributeNotEqualsWithMatch()
+    {
+        $this->testCase->assertTagAttributeNotEquals('fixture.bar', 'bar.tag', 'test', 'abc');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that test attribute is not equal to 'check'.
+     */
+    public function testAssertServiceTagAttributeNotEqualsWithNonMatch()
+    {
+        $this->testCase->assertTagAttributeNotEquals('fixture.bar', 'bar.tag', 'test', 'check');
     }
 }

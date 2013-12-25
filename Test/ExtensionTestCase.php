@@ -4,6 +4,7 @@ namespace Ka\Bundle\TestingBundle\Test;
 
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\TagAttributeEqualsConstraint;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
@@ -103,6 +104,46 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
         self::assertThat($tag,
             self::logicalNot(
                 new ServiceHasTagConstraint($container, $id)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Assert that a service tag attribute is equal to a value
+     *
+     * @param string $id
+     * @param string $tag
+     * @param string $attribute
+     * @param mixed $value
+     * @param string $message
+     */
+    public function assertTagAttributeEquals($id, $tag, $attribute, $value, $message = '')
+    {
+        $container = $this->getContainer();
+        $attributes = $container->getDefinition($id)->getTag($tag);
+
+        self::assertThat($value, new TagAttributeEqualsConstraint($attributes, $attribute), $message);
+    }
+
+    /**
+     * Assert that a service tag attribute is not equal to a value
+     *
+     * @param string $id
+     * @param string $tag
+     * @param string $attribute
+     * @param mixed $value
+     * @param string $message
+     */
+    public function assertTagAttributeNotEquals($id, $tag, $attribute, $value, $message = '')
+    {
+        $container = $this->getContainer();
+        $attributes = $container->getDefinition($id)->getTag($tag);
+
+        self::assertThat(
+            $value,
+            self::logicalNot(
+                new TagAttributeEqualsConstraint($attributes, $attribute)
             ),
             $message
         );

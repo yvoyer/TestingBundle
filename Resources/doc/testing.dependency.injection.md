@@ -101,3 +101,31 @@ Reports an error identified by `$message` if `$id` service has `$tag` tag.
       $this->assertServiceNotHasTag('bar.service', 'baz.tag');
   }
   ```
+
+assertTagAttributeEquals
+========================
+
+`assertTagAttributeEquals(string $id, string $tag, string $attribute, mixed $value[, $message = ''])`
+
+Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is not equal to `$value`.
+
+  ```php
+  public function testTagAttributeEquals()
+  {
+      $this->assertTagAttributeEquals('bar.service', 'baz.tag', 'zen', 'myvalue');
+  }
+  ```
+
+assertTagAttributeNotEquals
+===========================
+
+`assertTagAttributeNotEquals(string $id, string $tag, string $attribute, mixed $value[, $message = ''])`
+
+Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is equal to `$value`.
+
+  ```php
+  public function testTagAttributeNotEquals()
+  {
+      $this->assertTagAttributeNotEquals('bar.service', 'baz.tag', 'zen', 'othervalue');
+  }
+  ```

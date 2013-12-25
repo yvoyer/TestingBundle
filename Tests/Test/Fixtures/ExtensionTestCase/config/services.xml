@@ -6,7 +6,7 @@
 
     <services>
         <service id="fixture.bar" class="BarClass">
-            <tag name="bar.tag" />
+            <tag name="bar.tag" flag="true" test="check" />
         </service>
 
         <service id="fixture.foo" class="FooClass">
