@@ -10,6 +10,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
@@ -276,6 +277,85 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceTagAttributeNotEqualsWithConfig()
     {
         $this->testCase->assertServiceTagAttributeNotEquals('fixture.custom', 'custom.tag', 'custom', false, $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsSyntheticWithMatch()
+    {
+        $this->testCase->assertServiceIsSynthetic('fixture.synthetic');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service is synthetic.
+     */
+    public function testAssertServiceIsSyntheticWithNonMatch()
+    {
+        $this->testCase->assertServiceIsSynthetic('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.custom' service is synthetic.
+     */
+    public function testAssertServiceIsSyntheticWithConfig()
+    {
+        $this->testCase->assertServiceIsSynthetic('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should be synthetic
+     */
+    public function testAssertServiceIsSyntheticWithMessage()
+    {
+        $this->testCase->assertServiceIsSynthetic('fixture.bar', null, 'The service should be synthetic');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotSyntheticWithMatch()
+    {
+        $this->testCase->assertServiceIsNotSynthetic('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.synthetic' service is not synthetic.
+     */
+    public function testAssertServiceIsNotSyntheticWithNonMatch()
+    {
+        $this->testCase->assertServiceIsNotSynthetic('fixture.synthetic');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotSyntheticWithConfig()
+    {
+        $this->testCase->assertServiceIsNotSynthetic('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should not be synthetic
+     */
+    public function testAssertServiceIsNotSyntheticWithMessage()
+    {
+        $this->testCase->assertServiceIsNotSynthetic('fixture.synthetic', null, 'The service should not be synthetic');
     }
 
     /**

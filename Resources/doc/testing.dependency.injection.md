@@ -130,6 +130,34 @@ Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is
   }
   ```
 
+assertServiceIsSynthetic
+========================
+
+`assertServiceIsSynthetic(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is not synthetic.
+
+  ```php
+  public function testServiceIsSynthetic()
+  {
+      $this->assertServiceIsSynthetic('bar.service');
+  }
+  ```
+
+assertServiceIsNotSynthetic
+===========================
+
+`assertServiceIsNotSynthetic(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is synthetic.
+
+  ```php
+  public function testServiceIsNotSynthetic()
+  {
+      $this->assertServiceIsNotSynthetic('bar.service');
+  }
+  ```
+
 Helper Methods
 ==============
 

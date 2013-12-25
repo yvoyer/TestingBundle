@@ -14,5 +14,6 @@
             <argument type="service" id="fixture.bar" />
         </service>
 
+        <service id="fixture.synthetic" synthetic="true" />
     </services>
 </container>
