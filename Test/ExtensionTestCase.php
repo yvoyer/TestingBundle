@@ -16,6 +16,11 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var array
+     */
+    private $containers = array();
+
+    /**
      * Get an instance of the Extension under test
      *
      * @return ExtensionInterface
@@ -71,9 +76,6 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     /**
      * Assert that a service has a given tag
      *
-     * TODO: to prevent building the container excessively and allow for multiple assertions, the assertions should
-     * accept a built container instead of a config
-     *
      * @param string $id
      * @param string $tag
      * @param array $config
@@ -115,12 +117,18 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
      */
     private function getContainer(array $config = null)
     {
-        $container = new ContainerBuilder();
-        $extension = $this->getExtension();
         $config = $config ?: $this->getDefaultConfig();
 
-        $extension->load($config, $container);
+        $configId = md5(serialize($config));
 
-        return $container;
+        if (!isset($this->containers[$configId])) {
+            $container = new ContainerBuilder();
+            $extension = $this->getExtension();
+            $extension->load($config, $container);
+
+            $this->containers[$configId] = $container;
+        }
+
+        return $this->containers[$configId];
     }
 }
