@@ -85,7 +85,6 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainer($config);
 
-        self::assertServiceExists($id, $config);
         self::assertThat($tag, new ServiceHasTagConstraint($container, $id), $message);
     }
 
@@ -101,7 +100,6 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainer($config);
 
-        self::assertServiceExists($id, $config);
         self::assertThat($tag,
             self::logicalNot(
                 new ServiceHasTagConstraint($container, $id)

@@ -113,17 +113,6 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @group integration
-     *
-     * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expectedExceptionMessage Failed asserting that 'fixture.not_defined' service is defined.
-     */
-    public function testAssertServiceHasTagWithNonExistingService()
-    {
-        $this->testCase->assertServiceHasTag('fixture.not_defined', 'fixture.tag');
-    }
-
-    /**
-     * @group integration
      */
     public function testAssertServiceHasTagWithMatch()
     {
@@ -139,17 +128,6 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceHasTagWithNonMatch()
     {
         $this->testCase->assertServiceHasTag('fixture.bar', 'baz.tag');
-    }
-
-    /**
-     * @group integration
-     *
-     * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expectedExceptionMessage Failed asserting that 'fixture.not_defined' service is defined.
-     */
-    public function testAssertServiceNotHasTagWithNonExistingService()
-    {
-        $this->testCase->assertServiceHasTag('fixture.not_defined', 'fixture.tag');
     }
 
     /**
