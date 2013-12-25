@@ -2,14 +2,14 @@
 
 namespace Ka\Bundle\TestingBundle\Tests\Test\Constraint\Extension;
 
-use Ka\Bundle\TestingBundle\Test\Constraint\Extension\TagAttributeEqualsConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint;
 
 /**
- * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\TagAttributeEqualsConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
-class ServiceTagAttributeEqualsConstraintTest extends \PHPUnit_Framework_TestCase
+class ServiceServiceTagAttributeEqualsConstraintTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @group unit
@@ -23,7 +23,7 @@ class ServiceTagAttributeEqualsConstraintTest extends \PHPUnit_Framework_TestCas
      */
     public function testAttributeEquals($expected, $value, $attribute, $attributes)
     {
-        $constraint = new TagAttributeEqualsConstraint($attributes, $attribute);
+        $constraint = new ServiceTagAttributeEqualsConstraint($attributes, $attribute);
 
         $this->assertEquals($expected, $constraint->matches($value));
     }

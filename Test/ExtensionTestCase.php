@@ -4,7 +4,7 @@ namespace Ka\Bundle\TestingBundle\Test;
 
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint;
-use Ka\Bundle\TestingBundle\Test\Constraint\Extension\TagAttributeEqualsConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
@@ -119,12 +119,12 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
      * @param array $config
      * @param string $message
      */
-    public function assertTagAttributeEquals($id, $tag, $attribute, $value, array $config = null, $message = '')
+    public function assertServiceTagAttributeEquals($id, $tag, $attribute, $value, array $config = null, $message = '')
     {
         $container = $this->getContainer($config);
         $attributes = $container->getDefinition($id)->getTag($tag);
 
-        self::assertThat($value, new TagAttributeEqualsConstraint($attributes, $attribute), $message);
+        self::assertThat($value, new ServiceTagAttributeEqualsConstraint($attributes, $attribute), $message);
     }
 
     /**
@@ -137,7 +137,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
      * @param array $config
      * @param string $message
      */
-    public function assertTagAttributeNotEquals($id, $tag, $attribute, $value, array $config = null, $message = '')
+    public function assertServiceTagAttributeNotEquals($id, $tag, $attribute, $value, array $config = null, $message = '')
     {
         $container = $this->getContainer($config);
         $attributes = $container->getDefinition($id)->getTag($tag);
@@ -145,7 +145,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
         self::assertThat(
             $value,
             self::logicalNot(
-                new TagAttributeEqualsConstraint($attributes, $attribute)
+                new ServiceTagAttributeEqualsConstraint($attributes, $attribute)
             ),
             $message
         );

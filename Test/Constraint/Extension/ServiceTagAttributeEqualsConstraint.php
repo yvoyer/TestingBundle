@@ -5,7 +5,7 @@ namespace Ka\Bundle\TestingBundle\Test\Constraint\Extension;
 /**
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
-class TagAttributeEqualsConstraint extends \PHPUnit_Framework_Constraint
+class ServiceTagAttributeEqualsConstraint extends \PHPUnit_Framework_Constraint
 {
     /**
      * @var array

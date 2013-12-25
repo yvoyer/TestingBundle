@@ -102,31 +102,31 @@ Reports an error identified by `$message` if `$id` service has `$tag` tag.
   }
   ```
 
-assertTagAttributeEquals
-========================
+assertServiceTagAttributeEquals
+===============================
 
-`assertTagAttributeEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
+`assertServiceTagAttributeEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
 
 Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is not equal to `$value`.
 
   ```php
   public function testTagAttributeEquals()
   {
-      $this->assertTagAttributeEquals('bar.service', 'baz.tag', 'zen', 'myvalue');
+      $this->assertServiceTagAttributeEquals('bar.service', 'baz.tag', 'zen', 'myvalue');
   }
   ```
 
-assertTagAttributeNotEquals
-===========================
+assertServiceTagAttributeNotEquals
+==================================
 
-`assertTagAttributeNotEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
+`assertServiceTagAttributeNotEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
 
 Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is equal to `$value`.
 
   ```php
   public function testTagAttributeNotEquals()
   {
-      $this->assertTagAttributeNotEquals('bar.service', 'baz.tag', 'zen', 'othervalue');
+      $this->assertServiceTagAttributeNotEquals('bar.service', 'baz.tag', 'zen', 'othervalue');
   }
   ```
 
