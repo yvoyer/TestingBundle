@@ -685,6 +685,109 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group integration
+     */
+    public function testAssertServiceClassEqualsWithMatch()
+    {
+        $this->testCase->assertServiceClassEquals('fixture.bar', 'BarClass');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service class is equal to 'BazClass'.
+     */
+    public function testAssertServiceClassEqualsWithNonMatch()
+    {
+        $this->testCase->assertServiceClassEquals('fixture.bar', 'BazClass');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceClassEqualsWithConfig()
+    {
+        $this->testCase->assertServiceClassEquals('fixture.custom', 'CustomClass', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should be BarClass
+     */
+    public function testAssertServiceClassEqualsWithMessage()
+    {
+        $this->testCase->assertServiceClassEquals('fixture.bar', 'BazClass', null, 'Should be BarClass');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceClassEqualsWithParameter()
+    {
+        $this->testCase->assertServiceClassEquals('zed', '%zed.class%');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'zed' service class is equal to 'ZedClass'.
+     */
+    public function testAssertServiceClassEqualsWithParameterToClass()
+    {
+        $this->testCase->assertServiceClassEquals('zed', 'ZedClass');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceClassNotEqualsWithMatch()
+    {
+        $this->testCase->assertServiceClassNotEquals('fixture.bar', 'BazClass');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service class is not equal to 'BarClass'.
+     */
+    public function testAssertServiceClassNotEqualsWithNonMatch()
+    {
+        $this->testCase->assertServiceClassNotEquals('fixture.bar', 'BarClass');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceClassNotEqualsWithConfig()
+    {
+        $this->testCase->assertServiceClassNotEquals('fixture.custom', 'SomeClass', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should not be BarClass
+     */
+    public function testAssertServiceClassNotEqualsWithMessage()
+    {
+        $this->testCase->assertServiceClassNotEquals('fixture.bar', 'BarClass', null, 'Should not be BarClass');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceClassNotEqualsWithParameterValue()
+    {
+        $this->testCase->assertServiceClassNotEquals('zed', 'ZedClass');
+    }
+
+    /**
      * @return array
      */
     private function getCustomConfig()

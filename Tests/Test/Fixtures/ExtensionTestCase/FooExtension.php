@@ -24,6 +24,7 @@ class FooExtension implements ExtensionInterface
 
         if (isset($config['bar']['custom'])) {
             $definition = new Definition();
+            $definition->setClass('CustomClass');
             $definition->addTag('custom.tag', array('custom' => true));
 
             if (isset($config['bar']['custom']['public'])) {

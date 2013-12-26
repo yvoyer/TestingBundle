@@ -74,6 +74,34 @@ Reports an error identified by `$message` if `$id` service is defined in the con
   }
   ```
 
+assertServiceClassEquals
+------------------------
+
+`assertServiceClassEquals(string $id, string $class[, array $config = null, string $message = ''])`
+
+Reports an error identified by `$message` if `$id` service class does not equal `$class`.
+
+  ```php
+  public function testServiceClassEquals()
+  {
+      $this->assertServiceClassEquals('bar.service', '%bar.service.class%');
+  }
+  ```
+
+assertServiceClassNotEquals
+---------------------------
+
+`assertServiceClassNotEquals(string $id, string $class[, array $config = null, string $message = ''])`
+
+Reports an error identified by `$message` if `$id` service class is equal to `$class`.
+
+  ```php
+  public function testServiceClassNotEqualTo()
+  {
+      $this->assertServiceClassNotEquals('bar.service', 'Bar\\Foobar\\Class');
+  }
+  ```
+
 assertServiceHasTag
 -------------------
 

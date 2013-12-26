@@ -2,6 +2,7 @@
 
 namespace Ka\Bundle\TestingBundle\Test;
 
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceClassEqualsConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint;
@@ -47,7 +48,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that a service with the specified id exists
+     * Asserts that a service with the specified id exists
      *
      * @param string $id
      * @param array $config
@@ -61,7 +62,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that a service with the specified id does not exist
+     * Asserts that a service with the specified id does not exist
      *
      * @param string $id
      * @param array $config
@@ -80,7 +81,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that a service has a given tag
+     * Asserts that a service has a given tag
      *
      * @param string $id
      * @param string $tag
@@ -95,7 +96,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that a service does not have a given tag
+     * Asserts that a service does not have a given tag
      *
      * @param string $id
      * @param string $tag
@@ -115,7 +116,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that a service tag attribute is equal to a value
+     * Asserts that a service tag attribute is equal to a value
      *
      * @param string $id
      * @param string $tag
@@ -133,7 +134,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that a service tag attribute is not equal to a value
+     * Asserts that a service tag attribute is not equal to a value
      *
      * @param string $id
      * @param string $tag
@@ -157,7 +158,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is synthetic
+     * Asserts service is synthetic
      *
      * @param string $id
      * @param array $config
@@ -171,7 +172,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is not synthetic
+     * Asserts service is not synthetic
      *
      * @param $id
      * @param array $config
@@ -183,7 +184,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
 
         self::assertThat(
             $id,
-            $this->logicalNot(
+            self::logicalNot(
                 new ServiceIsSyntheticConstraint($container)
             ),
             $message
@@ -191,7 +192,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is abstract
+     * Asserts service is abstract
      *
      * @param string $id
      * @param array $config
@@ -205,7 +206,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is not abstract
+     * Asserts service is not abstract
      *
      * @param $id
      * @param array $config
@@ -217,7 +218,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
 
         self::assertThat(
             $id,
-            $this->logicalNot(
+            self::logicalNot(
                 new ServiceIsAbstractConstraint($container)
             ),
             $message
@@ -225,7 +226,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is lazy
+     * Asserts service is lazy
      *
      * @param string $id
      * @param array $config
@@ -239,7 +240,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is not lazy
+     * Asserts service is not lazy
      *
      * @param $id
      * @param array $config
@@ -251,7 +252,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
 
         self::assertThat(
             $id,
-            $this->logicalNot(
+            self::logicalNot(
                 new ServiceIsLazyConstraint($container)
             ),
             $message
@@ -259,7 +260,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is public
+     * Asserts service is public
      *
      * @param string $id
      * @param array $config
@@ -273,7 +274,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is not public
+     * Asserts service is not public
      *
      * @param $id
      * @param array $config
@@ -285,7 +286,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
 
         self::assertThat(
             $id,
-            $this->logicalNot(
+            self::logicalNot(
                 new ServiceIsPublicConstraint($container)
             ),
             $message
@@ -293,7 +294,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is synchronized
+     * Asserts service is synchronized
      *
      * @param string $id
      * @param array $config
@@ -307,7 +308,7 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert service is not synchronized
+     * Asserts service is not synchronized
      *
      * @param $id
      * @param array $config
@@ -319,8 +320,44 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
 
         self::assertThat(
             $id,
-            $this->logicalNot(
+            self::logicalNot(
                 new ServiceIsSynchronizedConstraint($container)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Asserts that a service class is equal to a value
+     * 
+     * @param string $id
+     * @param string $value
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceClassEquals($id, $value, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat($value, new ServiceClassEqualsConstraint($container, $id), $message);
+    }
+
+    /**
+     * Asserts that a service class does not equal a value
+     *
+     * @param string $id
+     * @param string $value
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceClassNotEquals($id, $value, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat(
+            $value,
+            self::logicalNot(
+                new ServiceClassEqualsConstraint($container, $id)
             ),
             $message
         );
