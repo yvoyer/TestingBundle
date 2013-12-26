@@ -10,6 +10,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint
  *
@@ -356,6 +357,85 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceIsNotSyntheticWithMessage()
     {
         $this->testCase->assertServiceIsNotSynthetic('fixture.synthetic', null, 'The service should not be synthetic');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsAbstractWithMatch()
+    {
+        $this->testCase->assertServiceIsAbstract('fixture.abstract');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service is abstract.
+     */
+    public function testAssertServiceIsAbstractWithNonMatch()
+    {
+        $this->testCase->assertServiceIsAbstract('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.custom' service is abstract.
+     */
+    public function testAssertServiceIsAbstractWithConfig()
+    {
+        $this->testCase->assertServiceIsAbstract('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should be abstract
+     */
+    public function testAssertServiceIsAbstractWithMessage()
+    {
+        $this->testCase->assertServiceIsAbstract('fixture.bar', null, 'The service should be abstract');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotAbstractWithMatch()
+    {
+        $this->testCase->assertServiceIsNotAbstract('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.abstract' service is not abstract.
+     */
+    public function testAssertServiceIsNotAbstractWithNonMatch()
+    {
+        $this->testCase->assertServiceIsNotAbstract('fixture.abstract');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotAbstractWithConfig()
+    {
+        $this->testCase->assertServiceIsNotAbstract('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should not be abstract
+     */
+    public function testAssertServiceIsNotAbstractWithMessage()
+    {
+        $this->testCase->assertServiceIsNotAbstract('fixture.abstract', null, 'The service should not be abstract');
     }
 
     /**

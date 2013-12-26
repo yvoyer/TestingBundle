@@ -130,6 +130,34 @@ Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is
   }
   ```
 
+assertServiceIsAbstract
+========================
+
+`assertServiceIsAbstract(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is not abstract.
+
+  ```php
+  public function testServiceIsAbstract()
+  {
+      $this->assertServiceIsAbstract('bar.service');
+  }
+  ```
+
+assertServiceIsNotAbstract
+===========================
+
+`assertServiceIsNotAbstract(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is abstract.
+
+  ```php
+  public function testServiceIsNotAbstract()
+  {
+      $this->assertServiceIsNotAbstract('bar.service');
+  }
+  ```
+
 assertServiceIsSynthetic
 ========================
 
