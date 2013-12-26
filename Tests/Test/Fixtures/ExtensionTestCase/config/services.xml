@@ -16,5 +16,6 @@
 
         <service id="fixture.synthetic" synthetic="true" />
         <service id="fixture.abstract" abstract="true" />
+        <service id="fixture.synchronized" synchronized="true" />
     </services>
 </container>

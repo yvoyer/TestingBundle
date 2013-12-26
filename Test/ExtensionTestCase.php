@@ -5,6 +5,7 @@ namespace Ka\Bundle\TestingBundle\Test;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSynchronizedConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -216,6 +217,40 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
             $id,
             $this->logicalNot(
                 new ServiceIsAbstractConstraint($container)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Assert service is synchronized
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceIsSynchronized($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat($id, new ServiceIsSynchronizedConstraint($container), $message);
+    }
+
+    /**
+     * Assert service is not synchronized
+     *
+     * @param $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceIsNotSynchronized($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat(
+            $id,
+            $this->logicalNot(
+                new ServiceIsSynchronizedConstraint($container)
             ),
             $message
         );

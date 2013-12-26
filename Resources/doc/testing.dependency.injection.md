@@ -158,6 +158,34 @@ Reports an error identified by `$message` if `$service` is abstract.
   }
   ```
 
+assertServiceIsSynchronized
+---------------------------
+
+`assertServiceIsSynchronized(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is not synchronized.
+
+  ```php
+  public function testServiceIsSynchronized()
+  {
+      $this->assertServiceIsSynchronized('bar.service');
+  }
+  ```
+
+assertServiceIsNotSynchronized
+------------------------------
+
+`assertServiceIsNotSynchronized(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is synchronized.
+
+  ```php
+  public function testServiceIsNotSynchronized()
+  {
+      $this->assertServiceIsNotSynchronized('bar.service');
+  }
+  ```
+
 assertServiceIsSynthetic
 ------------------------
 

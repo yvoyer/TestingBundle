@@ -11,6 +11,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSynchronizedConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint
  *
@@ -436,6 +437,86 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceIsNotAbstractWithMessage()
     {
         $this->testCase->assertServiceIsNotAbstract('fixture.abstract', null, 'The service should not be abstract');
+    }
+
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsSynchronizedWithMatch()
+    {
+        $this->testCase->assertServiceIsSynchronized('fixture.synchronized');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service is synchronized.
+     */
+    public function testAssertServiceIsSynchronizedWithNonMatch()
+    {
+        $this->testCase->assertServiceIsSynchronized('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.custom' service is synchronized.
+     */
+    public function testAssertServiceIsSynchronizedWithConfig()
+    {
+        $this->testCase->assertServiceIsSynchronized('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should be synchronized
+     */
+    public function testAssertServiceIsSynchronizedWithMessage()
+    {
+        $this->testCase->assertServiceIsSynchronized('fixture.bar', null, 'The service should be synchronized');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotSynchronizedWithMatch()
+    {
+        $this->testCase->assertServiceIsNotSynchronized('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.synchronized' service is not synchronized.
+     */
+    public function testAssertServiceIsNotSynchronizedWithNonMatch()
+    {
+        $this->testCase->assertServiceIsNotSynchronized('fixture.synchronized');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotSynchronizedWithConfig()
+    {
+        $this->testCase->assertServiceIsNotSynchronized('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should not be synchronized
+     */
+    public function testAssertServiceIsNotSynchronizedWithMessage()
+    {
+        $this->testCase->assertServiceIsNotSynchronized('fixture.synchronized', null, 'The service should not be synchronized');
     }
 
     /**
