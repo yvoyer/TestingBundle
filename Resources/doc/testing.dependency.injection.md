@@ -103,7 +103,7 @@ Reports an error identified by `$message` if `$id` service has `$tag` tag.
   ```
 
 assertServiceTagAttributeEquals
-===============================
+-------------------------------
 
 `assertServiceTagAttributeEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
 
@@ -117,7 +117,7 @@ Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is
   ```
 
 assertServiceTagAttributeNotEquals
-==================================
+----------------------------------
 
 `assertServiceTagAttributeNotEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
 
@@ -131,7 +131,7 @@ Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is
   ```
 
 assertServiceIsAbstract
-========================
+-----------------------
 
 `assertServiceIsAbstract(string $id[, array $config = null, $message = ''])`
 
@@ -145,7 +145,7 @@ Reports an error identified by `$message` if `$service` is not abstract.
   ```
 
 assertServiceIsNotAbstract
-===========================
+--------------------------
 
 `assertServiceIsNotAbstract(string $id[, array $config = null, $message = ''])`
 
@@ -159,7 +159,7 @@ Reports an error identified by `$message` if `$service` is abstract.
   ```
 
 assertServiceIsSynthetic
-========================
+------------------------
 
 `assertServiceIsSynthetic(string $id[, array $config = null, $message = ''])`
 
@@ -173,7 +173,7 @@ Reports an error identified by `$message` if `$service` is not synthetic.
   ```
 
 assertServiceIsNotSynthetic
-===========================
+---------------------------
 
 `assertServiceIsNotSynthetic(string $id[, array $config = null, $message = ''])`
 
