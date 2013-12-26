@@ -11,6 +11,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsLazyConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsPublicConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSynchronizedConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint
@@ -438,6 +439,85 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceIsNotAbstractWithMessage()
     {
         $this->testCase->assertServiceIsNotAbstract('fixture.abstract', null, 'The service should not be abstract');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsLazyWithMatch()
+    {
+        $this->testCase->assertServiceIsLazy('fixture.lazy');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service is lazy.
+     */
+    public function testAssertServiceIsLazyWithNonMatch()
+    {
+        $this->testCase->assertServiceIsLazy('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.custom' service is lazy.
+     */
+    public function testAssertServiceIsLazyWithConfig()
+    {
+        $this->testCase->assertServiceIsLazy('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should be lazy
+     */
+    public function testAssertServiceIsLazyWithMessage()
+    {
+        $this->testCase->assertServiceIsLazy('fixture.bar', null, 'The service should be lazy');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotLazyWithMatch()
+    {
+        $this->testCase->assertServiceIsNotLazy('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.lazy' service is not lazy.
+     */
+    public function testAssertServiceIsNotLazyWithNonMatch()
+    {
+        $this->testCase->assertServiceIsNotLazy('fixture.lazy');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotLazyWithConfig()
+    {
+        $this->testCase->assertServiceIsNotLazy('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should not be lazy
+     */
+    public function testAssertServiceIsNotLazyWithMessage()
+    {
+        $this->testCase->assertServiceIsNotLazy('fixture.lazy', null, 'The service should not be lazy');
     }
 
     /**

@@ -18,5 +18,6 @@
         <service id="fixture.notpublic" public="false" />
         <service id="fixture.synchronized" synchronized="true" />
         <service id="fixture.synthetic" synthetic="true" />
+        <service id="fixture.lazy" lazy="true" />
     </services>
 </container>

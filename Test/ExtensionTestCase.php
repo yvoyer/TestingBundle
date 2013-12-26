@@ -5,6 +5,7 @@ namespace Ka\Bundle\TestingBundle\Test;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsLazyConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsPublicConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSynchronizedConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint;
@@ -218,6 +219,40 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
             $id,
             $this->logicalNot(
                 new ServiceIsAbstractConstraint($container)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Assert service is lazy
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceIsLazy($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat($id, new ServiceIsLazyConstraint($container), $message);
+    }
+
+    /**
+     * Assert service is not lazy
+     *
+     * @param $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceIsNotLazy($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat(
+            $id,
+            $this->logicalNot(
+                new ServiceIsLazyConstraint($container)
             ),
             $message
         );

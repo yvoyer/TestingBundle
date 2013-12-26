@@ -158,6 +158,34 @@ Reports an error identified by `$message` if `$service` is abstract.
   }
   ```
 
+assertServiceIsLazy
+-------------------
+
+`assertServiceIsLazy(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is not lazy.
+
+  ```php
+  public function testServiceIsLazy()
+  {
+      $this->assertServiceIsLazy('bar.service');
+  }
+  ```
+
+assertServiceIsNotLazy
+----------------------
+
+`assertServiceIsLazy(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is lazy.
+
+  ```php
+  public function testServiceIsNotLazy()
+  {
+      $this->assertServiceIsNotLazy('bar.service');
+  }
+  ```
+
 assertServiceIsPublic
 ---------------------
 
