@@ -8,6 +8,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
 /**
  * @covers \Ka\Bundle\TestingBundle\Test\ExtensionTestCase
  *
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceClassEqualsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint
