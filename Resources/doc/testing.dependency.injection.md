@@ -45,6 +45,8 @@ This section lists the various assertion methods that are available.
 
 <!-- TODO: continue to expand the documentation and clarify anything ambiguous. -->
 <!-- TODO: add index and permalinks -->
+<!-- TODO: add sample fail tests -->
+<!-- TODO: remove inverse case and add note that it exists -->
 
 assertServiceExists
 -------------------
