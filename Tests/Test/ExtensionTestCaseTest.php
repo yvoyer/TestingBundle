@@ -11,6 +11,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceExistsConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceHasTagConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsAbstractConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsPublicConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSynchronizedConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint
@@ -439,6 +440,90 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertServiceIsNotAbstract('fixture.abstract', null, 'The service should not be abstract');
     }
 
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsPublicWithMatch()
+    {
+        $this->testCase->assertServiceIsPublic('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.notpublic' service is public.
+     */
+    public function testAssertServiceIsPublicWithNonMatch()
+    {
+        $this->testCase->assertServiceIsPublic('fixture.notpublic');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.custom' service is public.
+     */
+    public function testAssertServiceIsPublicWithConfig()
+    {
+        $config = $this->getCustomConfig();
+        $config['bar']['custom'] = array('public' => false);
+
+        $this->testCase->assertServiceIsPublic('fixture.custom', $config);
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should be public
+     */
+    public function testAssertServiceIsPublicWithMessage()
+    {
+        $this->testCase->assertServiceIsPublic('fixture.notpublic', null, 'The service should be public');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotPublicWithMatch()
+    {
+        $this->testCase->assertServiceIsNotPublic('fixture.notpublic');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service is not public.
+     */
+    public function testAssertServiceIsNotPublicWithNonMatch()
+    {
+        $this->testCase->assertServiceIsNotPublic('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceIsNotPublicWithConfig()
+    {
+        $config = $this->getCustomConfig();
+        $config['bar']['custom'] = array('public' => false);
+
+        $this->testCase->assertServiceIsNotPublic('fixture.custom', $config);
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage The service should not be public
+     */
+    public function testAssertServiceIsNotPublicWithMessage()
+    {
+        $this->testCase->assertServiceIsNotPublic('fixture.bar', null, 'The service should not be public');
+    }
 
     /**
      * @group integration

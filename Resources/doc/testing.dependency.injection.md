@@ -158,6 +158,34 @@ Reports an error identified by `$message` if `$service` is abstract.
   }
   ```
 
+assertServiceIsPublic
+---------------------
+
+`assertServiceIsPublic(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is not public.
+
+  ```php
+  public function testServiceIsPublic()
+  {
+      $this->assertServiceIsPublic('bar.service');
+  }
+  ```
+
+assertServiceIsNotPublic
+------------------------
+
+`assertServiceIsNotPublic(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` is public.
+
+  ```php
+  public function testServiceIsNotPublic()
+  {
+      $this->assertServiceIsNotPublic('bar.service');
+  }
+  ```
+
 assertServiceIsSynchronized
 ---------------------------
 

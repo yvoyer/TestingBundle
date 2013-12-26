@@ -26,6 +26,10 @@ class FooExtension implements ExtensionInterface
             $definition = new Definition();
             $definition->addTag('custom.tag', array('custom' => true));
 
+            if (isset($config['bar']['custom']['public'])) {
+                $definition->setPublic($config['bar']['custom']['public']);
+            }
+
             $container->setDefinition('fixture.custom', $definition);
         }
 
