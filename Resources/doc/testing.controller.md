@@ -28,24 +28,12 @@ assertHtmlContains
 
 Reports an error identified by `$message` if `$text` is not found in the HTML response from `$url`.
 
+`assertHtmlNotContains()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testHtmlContains()
   {
       $this->assertHtmlContains('Hello, World!', '/path/to/page');
-  }
-  ```
-
-assertHtmlNotContains
----------------------
-
-`assertHtmlNotContains(string $text, string $url[, string $message = ''])`
-
-Reports an error identified by `$message` if `$text` is found in the HTML response from `$url`.
-
-  ```php
-  public function testHtmlNotContains()
-  {
-      $this->assertHtmlNotContains('Hello, World!', '/path/to/page');
   }
   ```
 
@@ -56,24 +44,12 @@ assertRedirect
 
 Reports an error identified by `$message` if `$url` does not redirect.
 
+`assertNotRedirect()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testAssertRedirect()
   {
       $this->assertRedirect('/path/to/page');
-  }
-  ```
-
-assertNotRedirect
------------------
-
-`assertNotRedirect(string $url[, string $message = ''])`
-
-Reports an error identified by `$message` if `$url` redirects.
-
-  ```php
-  public function testAssertNotRedirect()
-  {
-      $this->assertNotRedirect('/path/to/page');
   }
   ```
 
@@ -84,6 +60,8 @@ assertRedirectTo
 
 Reports an error identified by `$message` if `$url` does not redirect to `$destination`.
 
+`assertNotRedirectTo()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testAssertRedirectTo()
   {
@@ -91,21 +69,7 @@ Reports an error identified by `$message` if `$url` does not redirect to `$desti
   }
   ```
 
-assertNotRedirectTo
--------------------
-
-`assertNotRedirectTo(string $url, string $destination[, string $message = ''])`
-
-Reports an error identified by `$message` if `$url` redirects to `$destination`.
-
-  ```php
-  public function testAssertNotRedirectTo()
-  {
-      $this->assertNotRedirectTo('/path/to/page', '/not/redirect/to');
-  }
-  ```
-
-**Caution**: The assertion will still pass when `$url` returns a redirect that does not match `$destination`.
+**Caution**: `assertNotRedirectTo()` will still pass when `$url` returns a redirect that does not match `$destination`.
 
 assertAuthenticationIsRequired
 ------------------------------

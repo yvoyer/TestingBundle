@@ -55,24 +55,12 @@ assertServiceExists
 
 Reports an error identified by `$message` if `$id` service is not defined in the container.
 
+`assertServiceNotExists()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceExists()
   {
       $this->assertServiceExists('bar.service');
-  }
-  ```
-
-assertServiceNotExists
-----------------------
-
-`assertServiceNotExists(string $id[, array $config = null, string $message = ''])`
-
-Reports an error identified by `$message` if `$id` service is defined in the container.
-
-  ```php
-  public function testServiceNotExists()
-  {
-      $this->assertServiceNotExists('bar.service');
   }
   ```
 
@@ -83,24 +71,12 @@ assertServiceClassEquals
 
 Reports an error identified by `$message` if `$id` service class does not equal `$class`.
 
+`assertServiceClassNotEquals()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceClassEquals()
   {
       $this->assertServiceClassEquals('bar.service', '%bar.service.class%');
-  }
-  ```
-
-assertServiceClassNotEquals
----------------------------
-
-`assertServiceClassNotEquals(string $id, string $class[, array $config = null, string $message = ''])`
-
-Reports an error identified by `$message` if `$id` service class is equal to `$class`.
-
-  ```php
-  public function testServiceClassNotEqualTo()
-  {
-      $this->assertServiceClassNotEquals('bar.service', 'Bar\\Foobar\\Class');
   }
   ```
 
@@ -111,24 +87,12 @@ assertServiceHasTag
 
 Reports an error identified by `$message` if `$id` service does not have `$tag` tag.
 
+`assertServiceNotHasTag()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceHasTag()
   {
       $this->assertServiceHasTag('bar.service', 'bar.tag');
-  }
-  ```
-
-assertServiceNotHasTag
-----------------------
-
-`assertServiceNotHasTag(string $id, string $tag[, array $config = null, string $message = ''])`
-
-Reports an error identified by `$message` if `$id` service has `$tag` tag.
-
-  ```php
-  public function testServiceNotHasTag()
-  {
-      $this->assertServiceNotHasTag('bar.service', 'baz.tag');
   }
   ```
 
@@ -139,24 +103,12 @@ assertServiceTagAttributeEquals
 
 Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is not equal to `$value`.
 
+`assertServiceTagAttributeNotEquals()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testTagAttributeEquals()
   {
       $this->assertServiceTagAttributeEquals('bar.service', 'baz.tag', 'zen', 'myvalue');
-  }
-  ```
-
-assertServiceTagAttributeNotEquals
-----------------------------------
-
-`assertServiceTagAttributeNotEquals(string $id, string $tag, string $attribute, mixed $value[, array $config = null, $message = ''])`
-
-Reports an error identified by `$message` if a `$service` `$tag` `$attribute` is equal to `$value`.
-
-  ```php
-  public function testTagAttributeNotEquals()
-  {
-      $this->assertServiceTagAttributeNotEquals('bar.service', 'baz.tag', 'zen', 'othervalue');
   }
   ```
 
@@ -167,24 +119,12 @@ assertServiceIsAbstract
 
 Reports an error identified by `$message` if `$service` is not abstract.
 
+`assertServiceIsNotAbstract()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceIsAbstract()
   {
       $this->assertServiceIsAbstract('bar.service');
-  }
-  ```
-
-assertServiceIsNotAbstract
---------------------------
-
-`assertServiceIsNotAbstract(string $id[, array $config = null, $message = ''])`
-
-Reports an error identified by `$message` if `$service` is abstract.
-
-  ```php
-  public function testServiceIsNotAbstract()
-  {
-      $this->assertServiceIsNotAbstract('bar.service');
   }
   ```
 
@@ -195,24 +135,12 @@ assertServiceIsLazy
 
 Reports an error identified by `$message` if `$service` is not lazy.
 
+`assertServiceIsNotLazy()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceIsLazy()
   {
       $this->assertServiceIsLazy('bar.service');
-  }
-  ```
-
-assertServiceIsNotLazy
-----------------------
-
-`assertServiceIsLazy(string $id[, array $config = null, $message = ''])`
-
-Reports an error identified by `$message` if `$service` is lazy.
-
-  ```php
-  public function testServiceIsNotLazy()
-  {
-      $this->assertServiceIsNotLazy('bar.service');
   }
   ```
 
@@ -223,24 +151,12 @@ assertServiceIsPublic
 
 Reports an error identified by `$message` if `$service` is not public.
 
+`assertServiceIsNotPublic()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceIsPublic()
   {
       $this->assertServiceIsPublic('bar.service');
-  }
-  ```
-
-assertServiceIsNotPublic
-------------------------
-
-`assertServiceIsNotPublic(string $id[, array $config = null, $message = ''])`
-
-Reports an error identified by `$message` if `$service` is public.
-
-  ```php
-  public function testServiceIsNotPublic()
-  {
-      $this->assertServiceIsNotPublic('bar.service');
   }
   ```
 
@@ -251,24 +167,12 @@ assertServiceIsSynchronized
 
 Reports an error identified by `$message` if `$service` is not synchronized.
 
+`assertServiceIsNotSynchronized()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceIsSynchronized()
   {
       $this->assertServiceIsSynchronized('bar.service');
-  }
-  ```
-
-assertServiceIsNotSynchronized
-------------------------------
-
-`assertServiceIsNotSynchronized(string $id[, array $config = null, $message = ''])`
-
-Reports an error identified by `$message` if `$service` is synchronized.
-
-  ```php
-  public function testServiceIsNotSynchronized()
-  {
-      $this->assertServiceIsNotSynchronized('bar.service');
   }
   ```
 
@@ -279,24 +183,12 @@ assertServiceIsSynthetic
 
 Reports an error identified by `$message` if `$service` is not synthetic.
 
+`assertServiceIsNotSynthetic()` is the inverse of this assertion and takes the same arguments.
+
   ```php
   public function testServiceIsSynthetic()
   {
       $this->assertServiceIsSynthetic('bar.service');
-  }
-  ```
-
-assertServiceIsNotSynthetic
----------------------------
-
-`assertServiceIsNotSynthetic(string $id[, array $config = null, $message = ''])`
-
-Reports an error identified by `$message` if `$service` is synthetic.
-
-  ```php
-  public function testServiceIsNotSynthetic()
-  {
-      $this->assertServiceIsNotSynthetic('bar.service');
   }
   ```
 
