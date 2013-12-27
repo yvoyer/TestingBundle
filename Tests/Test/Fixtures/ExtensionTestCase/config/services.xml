@@ -25,5 +25,9 @@
         <service id="fixture.lazy" lazy="true" />
 
         <service id="zed" class="%zed.class%" />
+
+        <service id="request.scoped" scope="request" />
+        <service id="container.scoped" />
+        <service id="prototype.scoped" scope="prototype" />
     </services>
 </container>

@@ -17,6 +17,7 @@ use Ka\Bundle\TestingBundle\Tests\Test\Fixtures\ExtensionTestCase\NoDefaultConfi
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSynchronizedConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint
+ * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceScopeConstraint
  *
  * @author Kevin Archer <ka@kevinarcher.ca>
  */
@@ -829,6 +830,237 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertServiceClassIsParameter('fixture.custom', $this->getCustomConfig());
     }
 
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsRequestWithMatch()
+    {
+        $this->testCase->assertServiceScopeIsRequest('request.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'container' scope is 'request'.
+     */
+    public function testAssertServiceScopeIsRequestWithNonMatch(){
+        $this->testCase->assertServiceScopeIsRequest('container.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should be request scoped
+     */
+    public function testAssertServiceScopeIsRequestWithMessage()
+    {
+        $this->testCase->assertServiceScopeIsRequest('container.scoped', null, 'Should be request scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'container' scope is 'request'.
+     */
+    public function testAssertServiceScopeIsRequestWithConfig()
+    {
+        $this->testCase->assertServiceScopeIsRequest('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsNotRequestWithMatch()
+    {
+        $this->testCase->assertServiceScopeIsNotRequest('prototype.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'request' scope is not 'request'.
+     */
+    public function testAssertServiceScopeIsNotRequestWithNonMatch(){
+        $this->testCase->assertServiceScopeIsNotRequest('request.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should not be request scoped
+     */
+    public function testAssertServiceScopeIsNotRequestWithMessage()
+    {
+        $this->testCase->assertServiceScopeIsNotRequest('request.scoped', null, 'Should not be request scoped');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsNotRequestWithConfig()
+    {
+        $this->testCase->assertServiceScopeIsNotRequest('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsPrototypeWithMatch()
+    {
+        $this->testCase->assertServiceScopeIsPrototype('prototype.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'container' scope is 'prototype'.
+     */
+    public function testAssertServiceScopeIsPrototypeWithNonMatch(){
+        $this->testCase->assertServiceScopeIsPrototype('container.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should be prototype scoped
+     */
+    public function testAssertServiceScopeIsPrototypeWithMessage()
+    {
+        $this->testCase->assertServiceScopeIsPrototype('container.scoped', null, 'Should be prototype scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'container' scope is 'prototype'.
+     */
+    public function testAssertServiceScopeIsPrototypeWithConfig()
+    {
+        $this->testCase->assertServiceScopeIsPrototype('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsNotPrototypeWithMatch()
+    {
+        $this->testCase->assertServiceScopeIsNotPrototype('container.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'prototype' scope is not 'prototype'.
+     */
+    public function testAssertServiceScopeIsNotPrototypeWithNonMatch(){
+        $this->testCase->assertServiceScopeIsNotPrototype('prototype.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should not be prototype scoped
+     */
+    public function testAssertServiceScopeIsNotPrototypeWithMessage()
+    {
+        $this->testCase->assertServiceScopeIsNotPrototype('prototype.scoped', null, 'Should not be prototype scoped');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsNotPrototypeWithConfig()
+    {
+        $this->testCase->assertServiceScopeIsNotPrototype('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsContainerWithMatch()
+    {
+        $this->testCase->assertServiceScopeIsContainer('container.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'request' scope is 'container'.
+     */
+    public function testAssertServiceScopeIsContainerWithNonMatch(){
+        $this->testCase->assertServiceScopeIsContainer('request.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should be container scoped
+     */
+    public function testAssertServiceScopeIsContainerWithMessage()
+    {
+        $this->testCase->assertServiceScopeIsContainer('prototype.scoped', null, 'Should be container scoped');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsContainerWithConfig()
+    {
+        $this->testCase->assertServiceScopeIsContainer('fixture.custom', $this->getCustomConfig());
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceScopeIsNotContainerWithMatch()
+    {
+        $this->testCase->assertServiceScopeIsNotContainer('request.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'container' scope is not 'container'.
+     */
+    public function testAssertServiceScopeIsNotContainerWithNonMatch(){
+        $this->testCase->assertServiceScopeIsNotContainer('container.scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should not be container scoped
+     */
+    public function testAssertServiceScopeIsNotContainerWithMessage()
+    {
+        $this->testCase->assertServiceScopeIsNotContainer('container.scoped', null, 'Should not be container scoped');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'container' scope is not 'container'.
+     */
+    public function testAssertServiceScopeIsNotContainerWithConfig()
+    {
+        $this->testCase->assertServiceScopeIsNotContainer('fixture.custom', $this->getCustomConfig());
+    }
+    
     /**
      * @return array
      */

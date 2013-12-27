@@ -10,6 +10,7 @@ use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsLazyConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsPublicConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSynchronizedConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceIsSyntheticConstraint;
+use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceScopeConstraint;
 use Ka\Bundle\TestingBundle\Test\Constraint\Extension\ServiceTagAttributeEqualsConstraint;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
@@ -375,6 +376,108 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
         $container = $this->getContainer($config);
 
         self::assertThat("%{$id}.class%", new ServiceClassEqualsConstraint($container, $id), $message);
+    }
+
+    /**
+     * Asserts that a service is request scoped
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceScopeIsRequest($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat('request', new ServiceScopeConstraint($container, $id), $message);
+    }
+
+    /**
+     * Asserts that a service is not request scoped
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceScopeIsNotRequest($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat(
+            'request',
+            self::logicalNot(
+                new ServiceScopeConstraint($container, $id)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Asserts that a service is prototype scoped
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceScopeIsPrototype($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat('prototype', new ServiceScopeConstraint($container, $id), $message);
+    }
+
+    /**
+     * Asserts that a service is not prototype scoped
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceScopeIsNotPrototype($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat(
+            'prototype',
+            self::logicalNot(
+                new ServiceScopeConstraint($container, $id)
+            ),
+            $message
+        );
+    }
+
+    /**
+     * Asserts that a service is container scoped
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceScopeIsContainer($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat('container', new ServiceScopeConstraint($container, $id), $message);
+    }
+
+    /**
+     * Asserts that a service is not prototype scoped
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceScopeIsNotContainer($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat(
+            'container',
+            self::logicalNot(
+                new ServiceScopeConstraint($container, $id)
+            ),
+            $message
+        );
     }
 
     /**

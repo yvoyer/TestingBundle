@@ -206,6 +206,54 @@ Reports an error identified by `$message` if `$service` is not synthetic.
   }
   ```
 
+assertServiceScopeIsContainer
+---------------------------
+
+`assertServiceScopeIsContainer(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` scope is not request.
+
+`assertServiceScopeIsNotContainer()` is the inverse of this assertion and takes the same arguments.
+
+  ```php
+  public function testServiceScopeIsContainer()
+  {
+      $this->assertServiceScopeIsContainer('bar.service');
+  }
+  ```
+
+assertServiceScopeIsPrototype
+-----------------------------
+
+`assertServiceScopeIsPrototype(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` scope is not request.
+
+`assertServiceScopeIsNotPrototype()` is the inverse of this assertion and takes the same arguments.
+
+  ```php
+  public function testServiceScopeIsPrototype()
+  {
+      $this->assertServiceScopeIsPrototype('bar.service');
+  }
+  ```
+  
+assertServiceScopeIsRequest
+---------------------------
+
+`assertServiceScopeIsRequest(string $id[, array $config = null, $message = ''])`
+
+Reports an error identified by `$message` if `$service` scope is not request.
+
+`assertServiceScopeIsNotRequest()` is the inverse of this assertion and takes the same arguments.
+
+  ```php
+  public function testServiceScopeIsRequest()
+  {
+      $this->assertServiceScopeIsRequest('bar.service');
+  }
+  ```
+
 Helper Methods
 ==============
 
