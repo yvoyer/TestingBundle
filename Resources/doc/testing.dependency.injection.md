@@ -76,7 +76,21 @@ Reports an error identified by `$message` if `$id` service class does not equal 
   ```php
   public function testServiceClassEquals()
   {
-      $this->assertServiceClassEquals('bar.service', '%bar.service.class%');
+      $this->assertServiceClassEquals('bar.service', 'Bar\Class');
+  }
+  ```
+
+assertServiceClassIsParameter
+-----------------------------
+
+`assertServiceClassIsParameter(string $id[, array $config = null, string $message = ''])`
+
+Reports an error identified by `$message` if `$id` service class does not equal `%$id.class%`.
+
+  ```php
+  public function testServiceClassIsParameter()
+  {
+      $this->assertServiceClassIsParameter('bar.service');
   }
   ```
 

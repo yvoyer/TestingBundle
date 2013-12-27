@@ -364,6 +364,20 @@ abstract class ExtensionTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Asserts that a service class can be configured by a parameter.
+     *
+     * @param string $id
+     * @param array $config
+     * @param string $message
+     */
+    public function assertServiceClassIsParameter($id, array $config = null, $message = '')
+    {
+        $container = $this->getContainer($config);
+
+        self::assertThat("%{$id}.class%", new ServiceClassEqualsConstraint($container, $id), $message);
+    }
+
+    /**
      * @param array $config
      *
      * @return ContainerBuilder

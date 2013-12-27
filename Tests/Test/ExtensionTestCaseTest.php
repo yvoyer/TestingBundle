@@ -697,7 +697,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @group integration
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service class is equal to 'BazClass'.
+     * @expectedExceptionMessage Failed asserting that 'BarClass' service class is equal to 'BazClass'.
      */
     public function testAssertServiceClassEqualsWithNonMatch()
     {
@@ -735,7 +735,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @group integration
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expectedExceptionMessage Failed asserting that 'zed' service class is equal to 'ZedClass'.
+     * @expectedExceptionMessage Failed asserting that '%zed.class%' service class is equal to 'ZedClass'.
      */
     public function testAssertServiceClassEqualsWithParameterToClass()
     {
@@ -754,7 +754,7 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
      * @group integration
      *
      * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     * @expectedExceptionMessage Failed asserting that 'fixture.bar' service class is not equal to 'BarClass'.
+     * @expectedExceptionMessage Failed asserting that 'BarClass' service class is not equal to 'BarClass'.
      */
     public function testAssertServiceClassNotEqualsWithNonMatch()
     {
@@ -786,6 +786,47 @@ class ExtensionTestCaseTest extends \PHPUnit_Framework_TestCase
     public function testAssertServiceClassNotEqualsWithParameterValue()
     {
         $this->testCase->assertServiceClassNotEquals('zed', 'ZedClass');
+    }
+
+    /**
+     * @group integration
+     */
+    public function testAssertServiceClassIsParameterWithMatch()
+    {
+        $this->testCase->assertServiceClassIsParameter('zed');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'BarClass' service class is equal to '%fixture.bar.class%'.
+     */
+    public function testAssertServiceClassIsParameterWithNonMatch()
+    {
+        $this->testCase->assertServiceClassIsParameter('fixture.bar');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Should be configurable
+     */
+    public function testAssertServiceClassIsParameterWithMessage()
+    {
+        $this->testCase->assertServiceClassIsParameter('fixture.bar', null, 'Should be configurable');
+    }
+
+    /**
+     * @group integration
+     *
+     * @expectedException \PHPUnit_Framework_ExpectationFailedException
+     * @expectedExceptionMessage Failed asserting that 'CustomClass' service class is equal to '%fixture.custom.class%'.
+     */
+    public function testAssertServiceClassIsParameterWithConfig()
+    {
+        $this->testCase->assertServiceClassIsParameter('fixture.custom', $this->getCustomConfig());
     }
 
     /**

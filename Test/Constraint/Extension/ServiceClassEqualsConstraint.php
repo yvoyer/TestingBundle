@@ -51,7 +51,7 @@ class ServiceClassEqualsConstraint extends \PHPUnit_Framework_Constraint
      */
     public function toString()
     {
-        return 'class is equal to';
+        return 'service class is equal to';
     }
 
     /**
@@ -61,6 +61,6 @@ class ServiceClassEqualsConstraint extends \PHPUnit_Framework_Constraint
      */
     protected function failureDescription($other)
     {
-        return \PHPUnit_Util_Type::export($this->id) . ' service '. $this->toString() . ' ' . \PHPUnit_Util_Type::export($other);
+        return \PHPUnit_Util_Type::export($this->definition->getClass()) . ' ' . $this->toString() . ' ' . \PHPUnit_Util_Type::export($other);
     }
 }
