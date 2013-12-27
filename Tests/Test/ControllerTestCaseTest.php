@@ -5,8 +5,6 @@ namespace Ka\Bundle\TestingBundle\Tests\Test;
 use Ka\Bundle\TestingBundle\Test\ControllerTestCase;
 
 /**
- * TODO: Probably could simply these tests by using data providers by assertion type
- *
  * @covers \Ka\Bundle\TestingBundle\Test\ControllerTestCase
  *
  * @covers \Ka\Bundle\TestingBundle\Test\Constraint\Controller\HtmlContainsConstraint
@@ -21,7 +19,7 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
      */
     private $testCase;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->testCase = new ControllerTestCase();
     }
