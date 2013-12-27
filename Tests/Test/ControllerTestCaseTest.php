@@ -228,6 +228,9 @@ class ControllerTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->testCase->assertNotRedirectTo('/fixture/redirect', '/fixture/index', 'Should not redirect to /fixture/index');
     }
 
+    /**
+     * @group functional
+     */
     public function testAssertAuthenticationIsRequiredWithMatch()
     {
         $this->testCase->assertAuthenticationIsRequired('/fixture/secured', '/fixture/login');
