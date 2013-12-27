@@ -19,9 +19,9 @@ class ServiceHasTagConstraintTest extends \PHPUnit_Framework_TestCase
      * @param bool $expected
      * @param string $id
      * @param string $tag
-     * @param bool $returnValue
+     * @param bool $hasTag
      */
-    public function testServiceHasTag($expected, $id, $tag, $returnValue)
+    public function testServiceHasTag($expected, $id, $tag, $hasTag)
     {
         $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder');
         $definition = $this->getMock('Symfony\Component\DependencyInjection\Definition');
@@ -37,7 +37,7 @@ class ServiceHasTagConstraintTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('hasTag')
             ->with($tag)
-            ->will($this->returnValue($returnValue))
+            ->will($this->returnValue($hasTag))
         ;
 
         $constraint = new ServiceHasTagConstraint($container, $id);

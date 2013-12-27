@@ -19,9 +19,9 @@ class ServiceClassEqualsConstraintTest extends \PHPUnit_Framework_TestCase
      * @param bool $expected
      * @param string $id
      * @param string $class
-     * @param bool $returnValue
+     * @param bool $actualClass
      */
-    public function testServiceHasTag($expected, $id, $class, $returnValue)
+    public function testServiceHasTag($expected, $id, $class, $actualClass)
     {
         $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder');
         $definition = $this->getMock('Symfony\Component\DependencyInjection\Definition');
@@ -36,7 +36,7 @@ class ServiceClassEqualsConstraintTest extends \PHPUnit_Framework_TestCase
         $definition
             ->expects($this->once())
             ->method('getClass')
-            ->will($this->returnValue($returnValue))
+            ->will($this->returnValue($actualClass))
         ;
 
         $constraint = new ServiceClassEqualsConstraint($container, $id);
@@ -47,9 +47,9 @@ class ServiceClassEqualsConstraintTest extends \PHPUnit_Framework_TestCase
     public function serviceClassProvider()
     {
         return array(
-            array(true, 'bar.service', '%bar.service.class%', true),
-            array(true, 'bar.service', 'Foo\\Bar\\FooBar', true),
-            array(false, 'baz.service', 'Unknown\\Class', false),
+            array(true, 'bar.service', '%bar.service.class%', '%bar.service.class%'),
+            array(true, 'bar.service', 'Foo\\Bar\\FooBar', 'Foo\\Bar\\FooBar'),
+            array(false, 'baz.service', 'Unknown\\Class', 'NotTheSameClass'),
         );
     }
 }
