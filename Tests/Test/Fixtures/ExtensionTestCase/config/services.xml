@@ -29,5 +29,8 @@
         <service id="request.scoped" scope="request" />
         <service id="container.scoped" />
         <service id="prototype.scoped" scope="prototype" />
+
+        <service id="strange.service" public="false" />
+        <service id="super.service" alias="strange.service" />
     </services>
 </container>
